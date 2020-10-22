@@ -13,6 +13,7 @@ class CreateCollabsTable extends Migration
      */
     public function up()
     {
+        //
         Schema::create('collabs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('category');

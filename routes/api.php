@@ -16,19 +16,11 @@ use App\Institution;
 |
 */
 
-// Collabs
 // CRUD
-
-// 1. get all (GET) /api/collabs
-// 2. create a collab (POST) /api/collab
-// 3. get a single (GET) /api/collabs/{id}
-// 4. update a single (PUT/PATCH) /api/collabs/{id}
-// 5. delete (DELETE) /aoi/collabs/{id}
-
 // to create a resource (collabs) in laravel
 // 1. create the db and migrations
 // 2. create a model
-// 2.5 create service Eloquen ORM
+// 2.5 create service Eloquent ORM
 // 3. create a controller to go get info from the db
 // 4. return that info
 

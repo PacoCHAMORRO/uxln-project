@@ -13,7 +13,7 @@ class CollabController extends Controller
      */
     public function index()
     {
-        //
+        // Get all
     }
 
     /**
