@@ -16,6 +16,8 @@ class CreateCollabsTable extends Migration
         //
         Schema::create('collabs', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('institution_id')->unsigned()->index();
+            $table->foreign('institution_id')->references('id')->on('institutions')->onDelete('cascade');
             $table->string('category');
             $table->string('title');
             $table->date('date');
