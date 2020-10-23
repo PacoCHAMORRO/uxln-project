@@ -10,26 +10,23 @@ use App\Institution;
 | API Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
+| These routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group. 
 |
 */
 
-// CRUD
-// to create a resource (collabs) in laravel
-// 1. create the db and migrations
-// 2. create a model
-// 2.5 create service Eloquent ORM
-// 3. create a controller to go get info from the db
-// 4. return that info
-
-Route::get('/institutions', 'InstitutionController@index');
+/* Route::get('/institutions', 'InstitutionController@index');
 Route::post('/institutions', 'InstitutionController@store');
 Route::get('/institutions/{id}', 'InstitutionController@show');
 Route::put('/institutions/{id}', 'InstitutionController@update');
-Route::delete('/institutions/{id}', 'InstitutionController@destroy');
+Route::delete('/institutions/{id}', 'InstitutionController@destroy'); */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::apiResource('/institutions', 'InstitutionController');
+
+Route::group(['prefix' => 'institutions'], function() {
+    Route::apiResource('/{institution}/collabs', 'CollabController');
 });

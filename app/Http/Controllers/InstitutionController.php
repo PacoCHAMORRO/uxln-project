@@ -15,9 +15,7 @@ class InstitutionController extends Controller
      */
     public function index()
     {
-        // get all institutions
-        return Institution::all();
-        
+        return Institution::all(); 
     }
 
     /**
@@ -28,18 +26,20 @@ class InstitutionController extends Controller
      */
     public function store(Request $request)
     {
-        return Institution::create($request->all());
+        $institution = Institution::create($request->all());
+
+        return response()->json($institution, 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Institution  $institution
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Institution $institution)
     {
-        return Institution::find($id);
+        return $institution;
     }
 
     /**
@@ -49,12 +49,11 @@ class InstitutionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Institution $institution)
     {
-        $institution = Institution::findOrFail($id);
         $institution->update($request->all());
 
-        return $institution;
+        return response()->json($institution, 200);
     }
     
 
@@ -64,11 +63,10 @@ class InstitutionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(institution $institution)
     {
-        $institution = Institution::findOrFail($id);
         $institution->delete();
 
-        return 204;
+        return response()->json(null, 204);
     }
 }
