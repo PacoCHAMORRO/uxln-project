@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Collab;
+use App\Institution;
 use Illuminate\Http\Request;
 
 class CollabController extends Controller
@@ -13,7 +15,7 @@ class CollabController extends Controller
      */
     public function index()
     {
-        // Get all
+        return Collab::all();
     }
 
     /**
@@ -22,42 +24,50 @@ class CollabController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Institution $institution)
     {
-        //
+        $collab = new Collab($request->all());
+        /* Collab::create($request->all()); */
+
+        $institution->collab()->save($collab);
+
+        return response()->json($collab, 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Collab $collab
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Collab $collab)
     {
-        //
+        return $collab;
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Collab $collab
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
+        $collab->update($request->all());
+
+        return response()->json($collab, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Collab $collab
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Collab $collab)
     {
-        //
+        $collab->delete();
+        return response()->json(null, 204);
     }
 }

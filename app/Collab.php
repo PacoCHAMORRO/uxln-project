@@ -12,4 +12,9 @@ class Collab extends Model
         'title',
         'date'
     ];
+
+    public function institution()
+    {
+        return $this->belongsTo(Institution::class);
+    }
 }

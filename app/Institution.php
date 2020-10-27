@@ -8,9 +8,13 @@ class Institution extends Model
 {
     // mass assignment
     protected $fillable = [
-        'id',
         'name',
         'logo',
         'link'
     ];
+
+    public function collab()
+    {
+        return $this->hasMany(Collab::class);
+    }
 }
