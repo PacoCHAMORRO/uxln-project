@@ -13,7 +13,7 @@ class Institution extends Model
         'link'
     ];
 
-    public function collab()
+    public function collabs()
     {
         return $this->hasMany(Collab::class);
     }

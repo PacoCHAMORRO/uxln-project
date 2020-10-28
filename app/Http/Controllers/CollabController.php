@@ -29,7 +29,7 @@ class CollabController extends Controller
         $collab = new Collab($request->all());
         /* Collab::create($request->all()); */
 
-        $institution->collab()->save($collab);
+        $institution->collabs()->save($collab);
 
         return response()->json($collab, 201);
     }

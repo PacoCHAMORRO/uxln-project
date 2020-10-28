@@ -10,7 +10,8 @@ class Collab extends Model
     protected $fillable = [
         'category',
         'title',
-        'date'
+        'date',
+        'institution_id'
     ];
 
     public function institution()

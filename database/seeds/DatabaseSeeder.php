@@ -1,6 +1,10 @@
 <?php
 
+use App\User;
+use App\Institution;
+use App\Collab;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,6 +15,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+
+        User::truncate();
+        Institution::truncate();
+        Collab::truncate();
+
+        $usersQuantity = 20;
+        $institutionsQuantity = 40;
+        $collabsQuantity = 200;
+
+        factory(User::class, $usersQuantity)->create();
+        factory(Institution::class, $institutionsQuantity)->create();
+        factory(Collab::class, $collabsQuantity)->create();
     }
 }
