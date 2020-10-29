@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Institution;
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,5 @@ Route::apiResource('/institutions', 'InstitutionController');
 Route::group(['prefix' => 'institutions'], function() {
     Route::apiResource('/{institution}/collabs', 'CollabController');
 });
+
+Route::apiResource('/users', 'UserController');
