@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\ApiController;
 use App\Institution;  
 
-class InstitutionController extends Controller
+class InstitutionController extends ApiController
 {
     /**
      * Display a listing of the resource.

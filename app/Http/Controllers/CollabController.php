@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Collab;
 use App\Institution;
 use Illuminate\Http\Request;
+use App\Http\Controllers\ApiController;
 
-class CollabController extends Controller
+class CollabController extends ApiController
 {
     /**
      * Display a listing of the resource.
