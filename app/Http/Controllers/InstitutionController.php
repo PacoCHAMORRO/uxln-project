@@ -27,7 +27,19 @@ class InstitutionController extends ApiController
      */
     public function store(Request $request)
     {
-        $institution = Institution::create($request->all());
+        $rules = [
+            'name' => 'required',
+            'logo' => 'required|image',
+            'link' => 'required',
+        ];
+
+        $this->validate($request, $rules);
+
+        $data = $request->all();
+
+        $data['logo'] = $request->logo->store('');
+
+        $institution = Institution::create($data);
 
         return response()->json($institution, 201);
     }
