@@ -15,7 +15,8 @@ class InstitutionController extends ApiController
      */
     public function index()
     {
-        return Institution::all(); 
+        $institutions = Institution::all(); 
+        return $this->showAll($institutions);
     }
 
     /**
@@ -39,7 +40,7 @@ class InstitutionController extends ApiController
      */
     public function show(Institution $institution)
     {
-        return $institution;
+        return $this->showOne($institution);
     }
 
     /**

@@ -14,9 +14,11 @@ class CollabController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Institution $institution)
     {
-        return Collab::all();
+        $collabs = $institution->collabs;
+
+        return $this->showAll($collabs);
     }
 
     /**
@@ -41,9 +43,9 @@ class CollabController extends ApiController
      * @param  Collab $collab
      * @return \Illuminate\Http\Response
      */
-    public function show(Collab $collab)
+    public function show(Institution $institution, Collab $collab)
     {
-        return $collab;
+        return $this->showOne($collab);
     }
 
     /**
@@ -53,11 +55,10 @@ class CollabController extends ApiController
      * @param  Collab $collab
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Institution $institution, Collab $collab)
     {
         $collab->update($request->all());
-
-        return response()->json($collab, 200);
+        return $this->showOne($collab);
     }
 
     /**
@@ -66,9 +67,9 @@ class CollabController extends ApiController
      * @param  Collab $collab
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Collab $collab)
+    public function destroy(Institution $institution, Collab $collab)
     {
         $collab->delete();
-        return response()->json(null, 204);
+        return response()->json(null, 204); 
     }
 }
