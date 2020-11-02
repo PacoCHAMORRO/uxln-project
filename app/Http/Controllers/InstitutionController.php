@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\ApiController;
-use App\Institution;  
+use App\Institution;
+use Illuminate\Support\Facades\Storage;
 
 class InstitutionController extends ApiController
 {
@@ -41,7 +42,7 @@ class InstitutionController extends ApiController
 
         $institution = Institution::create($data);
 
-        return response()->json($institution, 201);
+        return $this->showOne($institution, 201);
     }
 
     /**
@@ -76,10 +77,10 @@ class InstitutionController extends ApiController
      * @param  Institution $institution
      * @return \Illuminate\Http\Response
      */
-    public function destroy(institution $institution)
+    public function destroy(Institution $institution)
     {
+        Storage::delete($institution->logo);
         $institution->delete();
-
         return response()->json(null, 204);
     }
 }
