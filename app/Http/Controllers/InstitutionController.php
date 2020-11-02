@@ -65,9 +65,13 @@ class InstitutionController extends ApiController
      */
     public function update(Request $request, Institution $institution)
     {
+        if ($request->hasFile('logo')) {
+            Storage::delete($institution->logo);
+            $institution->logo = $request->logo->store('');
+        }
         $institution->update($request->all());
 
-        return response()->json($institution, 200);
+        return $this->showOne($institution);
     }
     
 
@@ -81,6 +85,6 @@ class InstitutionController extends ApiController
     {
         Storage::delete($institution->logo);
         $institution->delete();
-        return response()->json(null, 204);
+        return $this->showOne($institution, 204);
     }
 }
