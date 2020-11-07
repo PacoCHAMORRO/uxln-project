@@ -139,6 +139,7 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
+
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
@@ -165,6 +166,9 @@ return [
         /*
          * Package Service Providers...
          */
+        /* \Barryvdh\Cors\ServiceProvider::class, */
+
+        \Fruitcake\Cors\CorsServiceProvider::class,
 
         /*
          * Application Service Providers...
