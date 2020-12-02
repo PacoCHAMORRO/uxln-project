@@ -9,8 +9,9 @@ class Institution extends Model
     // mass assignment
     protected $fillable = [
         'name',
-        'logo',
-        'link'
+        'description',
+        'link',
+        'logo'
     ];
 
     public function collabs()

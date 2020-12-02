@@ -8,9 +8,9 @@ class Collab extends Model
 {
     // mass assignment
     protected $fillable = [
-        'category',
-        'title',
-        'date',
+        'category',  // categoría
+        'title',    // título
+        'date',     // fecha
         'institution_id'
     ];
 

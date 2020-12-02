@@ -1,13 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-use App\Http\Controllers\ApiController;
 use App\Institution;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
 
-class InstitutionController extends ApiController
+class InstitutionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,12 @@ class InstitutionController extends ApiController
      */
     public function index()
     {
-        $institutions = Institution::all(); 
-        return $this->showAll($institutions);
+        /* $institutions = Institution::all(); 
+        return $this->showAll($institutions); */
+
+        /* return new InstitutionCollection(Institution::all()); */
+        $institutions = Institution::all();
+        return view('admin-institutions', compact('institutions'));
     }
 
     /**
@@ -28,21 +31,22 @@ class InstitutionController extends ApiController
      */
     public function store(Request $request)
     {
-        $rules = [
+        /* $rules = [
             'name' => 'required',
             'logo' => 'required|image',
             'link' => 'required',
+            ''
         ];
 
-        $this->validate($request, $rules);
+        $this->validate($request, $rules); */
 
         $data = $request->all();
 
-        $data['logo'] = $request->logo->store('');
+        $data['logo'] = $request->logo->store(''); 
 
         $institution = Institution::create($data);
-
-        return $this->showOne($institution, 201);
+        
+        return back();
     }
 
     /**
@@ -65,13 +69,35 @@ class InstitutionController extends ApiController
      */
     public function update(Request $request, Institution $institution)
     {
+       
+       
         if ($request->hasFile('logo')) {
             Storage::delete($institution->logo);
             $institution->logo = $request->logo->store('');
+            $institution->save();
         }
-        $institution->update($request->all());
 
-        return $this->showOne($institution);
+        /* dd($request->all()); */
+
+        $req = $request->all();
+
+        $name = $req['name'];
+        $link = $req['link'];
+        /* $logo = $req['logo']; */
+        $description = $req['description'];
+
+        $updated = Institution::find($institution->id);
+
+        $updated->name = $name ? $name : $updated->name;
+        $updated->link = $link ? $link : $updated->link;
+        /* $updated->logo = $logo ? $logo : $updated->logo; */
+        $updated->description = $description ? $description : $updated->description;
+
+        /* dd($updated); */
+        $updated->save();
+        /* $institution->update($request->all()); */
+
+        return back();
     }
     
 
@@ -85,6 +111,7 @@ class InstitutionController extends ApiController
     {
         Storage::delete($institution->logo);
         $institution->delete();
-        return $this->showOne($institution, 204);
+        
+        return back();
     }
 }

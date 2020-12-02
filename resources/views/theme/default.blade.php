@@ -17,6 +17,7 @@
     
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('theme/vendor/bootstrap-4.1/bootstrap.min.css') }}" rel="stylesheet">
+    {{-- Vendor CSS --}}
     <link href="{{ asset('theme/vendor/animsition/animsition.min.css') }}" rel="stylesheet" media="all">
     <link href="{!! asset('theme/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css') !!}" rel="stylesheet" media="all">
     <link href="{!! asset('theme/vendor/wow/animate.css') !!}" rel="stylesheet" media="all">
@@ -25,35 +26,48 @@
     <link href="{!! asset('theme/vendor/select2/select2.min.css') !!}" rel="stylesheet" media="all">
     <link href="{!! asset('theme/vendor/perfect-scrollbar/perfect-scrollbar.css') !!}" rel="stylesheet" media="all">
 
+    <!-- DataTables CDN -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+    
     <!-- Main CSS-->
     <link href="{{ asset('theme/css/theme.css') }}" rel="stylesheet" media="all">
+    <link href="{{ asset('theme/css/custom-styles.css') }}" rel="stylesheet" media="all">
 
 </head>
 
 <body class="animsition">
+
     <div class="page-wrapper">
+
         @include('theme.header-mobile')
         @include('theme.sidebar')
+
         <div class="page-container">
+
             @include('theme.header')
+            
             <div class="main-content">
-                <div class="section__content section__content--p30">
+                <div class="section__content section__content--p20">
                     <div class="container-fluid">
                         <div class="row">
+
                             @section('content')
                             @show
+
                         </div>
                     </div>
                 </div>
             </div>
+            @yield('modals')
         </div>
+
     </div>
     
     <!-- Jquery JS-->
-    <script src="{!! asset('theme/vendor/jquery-3.2.1.min.js') !!}"></script>
+    <script src="{{ asset('theme/vendor/jquery-3.2.1.min.js') }}"></script>
     <!-- Bootstrap JS-->
-    <script src="{!! asset('theme/vendor/bootstrap-4.1/popper.min.js') !!}"></script>
-    <script src="{!! asset('theme/vendor/bootstrap-4.1/bootstrap.min.js') !!}"></script>
+    <script src="{{ asset('theme/vendor/bootstrap-4.1/popper.min.js') }}"></script>
+    <script src="{{ asset('theme/vendor/bootstrap-4.1/bootstrap.min.js') }}"></script>
     <!-- Vendor JS  -->
     <script src="{{ asset('theme/vendor/slick/slick.min.js') }}">    </script>
     <script src="{{ asset('theme/vendor/wow/wow.min.js') }}"></script>
@@ -64,12 +78,19 @@
     </script>
     <script src="{{ asset('theme/vendor/circle-progress/circle-progress.min.js') }}"></script>
     <script src="{{ asset('theme/vendor/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
-    <script src="{{ asset('theme/vendor/chartjs/Chart.bundle.min.js') }}"></script>
+    {{-- <script src="{{ asset('theme/vendor/chartjs/Chart.bundle.min.js') }}"></script> --}}
     <script src="{{ asset('theme/vendor/select2/select2.min.js') }}">
     </script>
 
+    <!-- DataTable JS-->
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+s
     <!-- Main JS-->
     <script src="{{ asset('theme/js/main.js') }}"></script>
+
+    @yield('script')
+
 </body>
 
 </html>

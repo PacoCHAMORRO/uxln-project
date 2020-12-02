@@ -1,3 +1,3 @@
 @extends('theme.default')
-<!-- @section('content') -->
+@section('content')
 @endsection
