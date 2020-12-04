@@ -19,7 +19,7 @@ use App\User;
 
 
 
-Route::get('my-home', 'HomeController@myHome');
+/* Route::get('home', 'HomeController@myHome'); */
 
 /* Route::get('admin/institutions', 'InstitutionController@index');
 Route::post('admin/institutions', 'InstitutionController@store'); */
@@ -27,7 +27,7 @@ Route::post('admin/institutions', 'InstitutionController@store'); */
 /* Route::resource('/admin/institutions', 'InstitutionController'); */
 
 Route::group(['prefix' => 'admin'], function() {
-  Route::resource('/institutions', 'InstitutionController');
+  Route::resource('/institutions', 'InstitutionController')->middleware('auth');
 });
 
 Route::get('contact', function() {
@@ -46,3 +46,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //});
 
 Route::Resource('/users', 'UserController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
