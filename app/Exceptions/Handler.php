@@ -101,10 +101,10 @@ class Handler extends ExceptionHandler
         return $this->errorResponse('Unexcpected Exception. Try Later', 500);
     }
 
-    protected function unauthenticated($request, AuthenticationException $exception)
+/*     protected function unauthenticated($request, AuthenticationException $exception)
     {
         return $this->errorResponse('Unauthenticated', 401);
-    }
+    } */
 
 
 
