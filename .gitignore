@@ -3,6 +3,8 @@
 /public/storage
 /storage/*.key
 /vendor
+/app/Http/Controllers/rCollabController.php
+resources/views/layouts/capp.blade copy.php
 .env
 .env.backup
 .phpunit.result.cache

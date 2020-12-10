@@ -3,11 +3,11 @@
 <div class="row">
   <div class="col-sm-12">
     <!-- DATA TABLE -->
-    <h3 class="title-5 m-b-35">directorio de instituciones</h3>
+    <h3 class="title-5 m-b-35">Usuarios</h3>
     <div class="table-data__tool">
       <div class="table-data__tool-right">
         <button class="au-btn au-btn-icon au-btn--green au-btn--small" data-toggle="modal" data-target="#addModal">
-          <i class="zmdi zmdi-plus"></i>Agregar Institución</button>
+          <i class="zmdi zmdi-plus"></i>Agregar Usuario</button>
         <button class="btn btn-danger">
           <i class="fa-trahs-o"></i>Eliminar</button>
       </div>
@@ -22,14 +22,14 @@
                 <span class="au-checkmark"></span>
               </label>
             </th>
-            <th>logo</th>
             <th>nombre</th>
-            <th>sitio web</th>
+            <th>email</th>
+            <th>admin</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-          @foreach ($institutions as $institution)
+          @foreach ($users as $user)
           <tr class="tr-shadow">
             <td>
               <label class="au-checkbox">
@@ -38,25 +38,26 @@
               </label>
             </td>
             <td>
-              <div class="image image-table">
-                <a href="#">
-                  <img src="{{ asset('img') . '/' . $institution->logo }}" alt="LOGO">
-                </a>
-              </div>
+              {{ $user->name }}
             </td>
-            <td class="desc">{{ $institution->name }}</td>
+            <td>{{ $user->email }}</td>
             <td>
-              <button type="button" class="btn btn-link">
-                <i class="fa fa-link"></i>&nbsp; {{ $institution->link }}</button>
-              <!-- <span class="status--process"></span> -->
+              @if ($user->admin)
+                                 
+              @endif
+              @if ($user.>admin)
+                <span class="success">Admin</span>
+              @else
+                <span class="primary">User</span>                  
+              @endif
             </td>
             <td>
               <div class="table-data-feature">
-                <button class="item edit" data-placement="top" title="Editar" value="{{ $institution->id }}"
+                <button class="item edit" data-placement="top" title="Editar" value="{{ $user->id }}"
                   data-toggle="modal" data-target="#editModal">
                   <i class="zmdi zmdi-edit"></i>
                 </button>
-              <button class="item delete" data-toggle="modal" value="{{ $institution->id }}" data-target="#deleteModal" data-placement="top" title="Eliminar">
+              <button class="item delete" data-toggle="modal" value="{{ $user->id }}" data-target="#deleteModal" data-placement="top" title="Eliminar">
                   <i class="zmdi zmdi-delete"></i>
                 </button>
                 <button class="item" data-toggle="tooltip" data-placement="top" title="Más">
@@ -82,7 +83,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="largeModalLabel">Agregar Casa Hogar</h5>
+        <h5 class="modal-title" id="largeModalLabel">Agregar Usuario</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>

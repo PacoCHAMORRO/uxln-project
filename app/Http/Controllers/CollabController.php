@@ -5,20 +5,30 @@ namespace App\Http\Controllers;
 use App\Collab;
 use App\Institution;
 use Illuminate\Http\Request;
-use App\Http\Controllers\ApiController;
 
-class CollabController extends ApiController
+class CollabController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Institution $institution)
+    public function index()
     {
-        $collabs = $institution->collabs;
+        $institutions = Institution::all();
+        $collabs = Collab::all();
 
-        return $this->showAll($collabs);
+        return view('admin-collabs', compact('institutions', 'collabs'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        
     }
 
     /**
@@ -27,49 +37,79 @@ class CollabController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Institution $institution)
+    public function store(Request $request)
     {
-        $collab = new Collab($request->all());
-        /* Collab::create($request->all()); */
+        $collab = new Collab();
+        $collab->institution_id = $request->institution_id;
+        $collab->category = $request->category;
+        $collab->title = $request->title;
+        $collab->date = $request->date;
+        $collab->save();
 
-        $institution->collabs()->save($collab);
-
-        return response()->json($collab, 201);
+        return back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  Collab $collab
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Institution $institution, Collab $collab)
+    public function show($id)
     {
-        return $this->showOne($collab);
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  Collab $collab
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Institution $institution, Collab $collab)
+    public function update(Request $request, Collab $collab)
     {
-        $collab->update($request->all());
-        return $this->showOne($collab);
+        $req = $request->all();
+
+        $title = $req['title'];
+        $date = $req['date'];
+        $category = $request['category'];
+        $institution_id = $request['institution_id'];
+
+        $updated = Collab::find($collab->id);
+
+        $updated->title = $title ? $title : $updated->title;
+        $updated->date = $date ? $date : $updated->date;
+        $updated->category = $category ? $category : $updated->category;
+        $updated->institution_id = $institution_id ? $institution_id : $updated->institution_id;
+        /* dd($updated); */
+        $updated->save();
+        /* $institution->update($request->all()); */
+
+        return back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Collab $collab
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Institution $institution, Collab $collab)
+    public function destroy(Collab $collab)
     {
         $collab->delete();
-        return response()->json(null, 204); 
+
+        return back();
     }
 }

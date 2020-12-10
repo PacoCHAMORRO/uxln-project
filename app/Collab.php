@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Collab extends Model
 {
+    public $timestamps = false;
     // mass assignment
     protected $fillable = [
         'category',  // categoría

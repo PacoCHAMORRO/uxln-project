@@ -20,7 +20,6 @@ class CreateCollabsTable extends Migration
             $table->string('category');
             $table->string('title');
             $table->date('date');
-            $table->timestamps();
         });
     }
 

@@ -3,11 +3,11 @@
 <div class="row">
   <div class="col-sm-12">
     <!-- DATA TABLE -->
-    <h3 class="title-5 m-b-35">directorio de instituciones</h3>
+    <h3 class="title-5 m-b-35">Colaboraciones</h3>
     <div class="table-data__tool">
       <div class="table-data__tool-right">
         <button class="au-btn au-btn-icon au-btn--green au-btn--small" data-toggle="modal" data-target="#addModal">
-          <i class="zmdi zmdi-plus"></i>Agregar Institución</button>
+          <i class="zmdi zmdi-plus"></i>Agregar Colaboración</button>
         <button class="btn btn-danger">
           <i class="fa-trahs-o"></i>Eliminar</button>
       </div>
@@ -22,14 +22,15 @@
                 <span class="au-checkmark"></span>
               </label>
             </th>
-            <th>logo</th>
-            <th>nombre</th>
-            <th>sitio web</th>
+            <th>institución</th>
+            <th>título</th>
+            <th>categoría</th>
+            <th>fecha</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-          @foreach ($institutions as $institution)
+          @foreach ($collabs as $collab)
           <tr class="tr-shadow">
             <td>
               <label class="au-checkbox">
@@ -37,26 +38,23 @@
                 <span class="au-checkmark"></span>
               </label>
             </td>
+            <td class="desc">{{ $collab->institution->name }}</td>
             <td>
-              <div class="image image-table">
-                <a href="#">
-                  <img src="{{ asset('img') . '/' . $institution->logo }}" alt="LOGO">
-                </a>
-              </div>
+              {{ $collab->title }}
             </td>
-            <td class="desc">{{ $institution->name }}</td>
             <td>
-              <button type="button" class="btn btn-link">
-                <i class="fa fa-link"></i>&nbsp; {{ $institution->link }}</button>
-              <!-- <span class="status--process"></span> -->
+              {{ $collab->category }}
+            </td>
+            <td>
+              {{ $collab->date }}
             </td>
             <td>
               <div class="table-data-feature">
-                <button class="item edit" data-placement="top" title="Editar" value="{{ $institution->id }}"
+                <button class="item edit" data-placement="top" title="Editar" value="{{ $collab->id }}"
                   data-toggle="modal" data-target="#editModal">
                   <i class="zmdi zmdi-edit"></i>
                 </button>
-              <button class="item delete" data-toggle="modal" value="{{ $institution->id }}" data-target="#deleteModal" data-placement="top" title="Eliminar">
+              <button class="item delete" data-toggle="modal" value="{{ $collab->id }}" data-target="#deleteModal" data-placement="top" title="Eliminar">
                   <i class="zmdi zmdi-delete"></i>
                 </button>
                 <button class="item" data-toggle="tooltip" data-placement="top" title="Más">
@@ -66,7 +64,7 @@
             </td>
           </tr>
           {{-- <tr class="spacer"></tr> --}}
-          @endforeach
+           @endforeach
         </tbody>
       </table>
     </div>
@@ -82,66 +80,63 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="largeModalLabel">Agregar Casa Hogar</h5>
+        <h5 class="modal-title" id="largeModalLabel">Agregar Colaboración</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
-      <form action="{{ action('InstitutionController@store') }}" method="POST" id="addForm"
+      <form action="{{ action('CollabController@store') }}" method="POST" id="addForm"
         enctype="multipart/form-data" class="form-horizontal">
         @csrf
         <div class="modal-body">
           {{-- ADD FORM --}}
           <div class="row form-group">
             <div class="col col-md-3">
-              <label for="text-input" class=" form-control-label">Nombre</label>
+              <label for="category" class=" form-control-label">Institución</label>
             </div>
             <div class="col-12 col-md-9">
-              <input type="text" name="name" placeholder="Casa Hogar A.C." class="form-control">
-              <small class="form-text text-muted">Nombre de la casa hogar</small>
+              <select name="institution_id">
+                @foreach ($institutions as $institution)
+                    <option value="{{ $institution->id }}">{{ $institution->name }}</option>
+                @endforeach
+              </select>
+              <small class="form-text text-muted">Nombre de la institución</small>
             </div>
           </div>
           <div class="row form-group">
             <div class="col col-md-3">
-              <label for="website-input" class=" form-control-label">Sitio web</label>
+              <label for="title" class=" form-control-label">Categoría</label>
             </div>
             <div class="col-12 col-md-9">
-              <input type="url" name="link" placeholder="URL" class="form-control">
-              <small class="help-block form-text">Introduzca el sitio web de la instituciones, preferentemente copiado
-                del sitio web oficial</small>
+              <select name="category">
+                <option value="Salud">Salud</option>
+                <option value="Educación">Educación</option>
+                <option value="Desarrollo Social">Desarrollo Social</option>
+                <option value="Recreación">Recreación</option>
+              </select>
             </div>
           </div>
           <div class="row form-group">
             <div class="col col-md-3">
-              <label for="textarea-input" class=" form-control-label">Descripción</label>
+              <label for="title" class=" form-control-label">Título</label>
             </div>
             <div class="col-12 col-md-9">
-              <textarea name="description" rows="9" placeholder="Describa el propósito de la organización..."
-                class="form-control"></textarea>
+              <input type="text" name="title" placeholder="Título" class="form-control">
+              <small class="help-block form-text">Título del evento/colaboración</small>
             </div>
           </div>
           <div class="row form-group">
             <div class="col col-md-3">
-              <label for="file-input" class=" form-control-label">Logotipo</label>
+              <label for="date" class=" form-control-label">Fecha</label>
             </div>
             <div class="col-12 col-md-9">
-              <input type="file" name="logo" class="form-control-file">
+              <input class="form-control" type="date" name="date">
             </div>
           </div>
-          <div class="row form-group">
-            <div class="col col-md-3">
-              <label for="file-multiple-input" class=" form-control-label">Fotografías de la institución
-                (opcional)</label>
-            </div>
-            <div class="col-12 col-md-9">
-              <input type="file" name="file-multiple-input" multiple="" class="form-control-file">
-            </div>
-          </div>
-
           {{-- END ADD FORM --}}
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
           <button type="submit" class="btn btn-primary">Agregar</button>
         </div>
       </form>
@@ -157,7 +152,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="largeModalLabel">Editar Casa Hogar</h5>
+        <h5 class="modal-title" id="largeModalLabel">Editar Colaboración</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
@@ -171,50 +166,47 @@
           {{-- EDIT FORM --}}
           <div class="row form-group">
             <div class="col col-md-3">
-              <label for="text-input" class=" form-control-label">Nombre</label>
+              <label for="category" class=" form-control-label">Institución</label>
             </div>
             <div class="col-12 col-md-9">
-              <input type="text" id="name" name="name" placeholder="Casa Hogar A.C." class="form-control">
-              <small class="form-text text-muted">Nombre de la casa hogar</small>
+              <select name="institution_id">
+                @foreach ($institutions as $institution)
+                    <option value="{{ $institution->id }}">{{ $institution->name }}</option>
+                @endforeach
+              </select>
+              <small class="form-text text-muted">Nombre de la institución</small>
             </div>
           </div>
           <div class="row form-group">
             <div class="col col-md-3">
-              <label for="website-input" class=" form-control-label">Sitio web</label>
+              <label for="title" class=" form-control-label">Categoría</label>
             </div>
             <div class="col-12 col-md-9">
-              <input type="url" id="link" name="link" placeholder="URL" class="form-control">
-              <small class="help-block form-text">Introduzca el sitio web de la instituciones, preferentemente copiado
-                del sitio web oficial</small>
+              <select name="category">
+                <option value="Salud">Salud</option>
+                <option value="Educación">Educación</option>
+                <option value="Desarrollo Social">Desarrollo Social</option>
+                <option value="Recreación">Recreación</option>
+              </select>
             </div>
           </div>
           <div class="row form-group">
             <div class="col col-md-3">
-              <label for="textarea-input" class=" form-control-label">Descripción</label>
+              <label for="title" class=" form-control-label">Título</label>
             </div>
             <div class="col-12 col-md-9">
-              <textarea name="description" id="description" rows="9"
-                placeholder="Describa el propósito de la organización..." class="form-control"></textarea>
+              <input type="text" name="title" placeholder="Título" class="form-control">
+              <small class="help-block form-text">Título del evento/colaboración</small>
             </div>
           </div>
           <div class="row form-group">
             <div class="col col-md-3">
-              <label for="file-input" class=" form-control-label">Logotipo</label>
+              <label for="date" class=" form-control-label">Fecha</label>
             </div>
             <div class="col-12 col-md-9">
-              <input type="file" name="logo" class="form-control-file">
+              <input class="form-control" type="date" name="date">
             </div>
           </div>
-          <div class="row form-group">
-            <div class="col col-md-3">
-              <label for="file-multiple-input" class=" form-control-label">Fotografías de la institución
-                (opcional)</label>
-            </div>
-            <div class="col-12 col-md-9">
-              <input type="file" id="pictures" name="file-multiple-input" multiple="" class="form-control-file">
-            </div>
-          </div>
-
           {{-- END EDIT FORM --}}
         </div>
         <div class="modal-footer">
@@ -234,13 +226,13 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="largeModalLabel">Eliminar Casa Hogar</h5>
+        <h5 class="modal-title" id="largeModalLabel">Eliminar Colaboración</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
 
-      <form action="/admin/institutions/" method="POST" id="deleteForm" enctype="multipart/form-data"
+      <form action="/admin/collabs/" method="POST" id="deleteForm" enctype="multipart/form-data"
         class="form-horizontal">
         @csrf
         @method('DELETE')
@@ -316,7 +308,7 @@
 
 
   $(document).ready(function () {
-    console.log("Mi admin")
+
     var table = $('#datatable').DataTable();
     console.log(table)
 
@@ -324,39 +316,16 @@
 
     // Start Edit record
     $('#datatable').on('click', '.edit', function () {
-
-      $id_institution = $(this).val();
-      console.log($id_institution);
-
-      /*  $tr = $(this).closest('tr');
-       if ($($tr).hasClass('child')) {
-         $tr = $tr.prev('.parent');
-       } */
-      /*
-      var data = table.row($tr).data();
-
-      data[0] = $(this).val();
-      data[1] = "";
-      data[2] = "";
-      data[3] = "";
-      data[4] = "";
-
-      for (var i of data) {
-        console.log(i);
-      } */
-
-      $('#editForm').attr('action', '/admin/institutions/' + $id_institution);
-
-
+      $id_collab = $(this).val();
+      $('#editForm').attr('action', '/admin/collabs/' + $id_collab);
     });
 
     // Start Delete Record
     $('#datatable').on('click', '.delete', function () {
 
-      $id_institution = $(this).val();
-      console.log($id_institution);
+      $id_collab = $(this).val();
 
-      $('#deleteForm').attr('action', '/admin/institutions/' + $id_institution);
+      $('#deleteForm').attr('action', '/admin/collabs/' + $id_collab);
 
       });
   });

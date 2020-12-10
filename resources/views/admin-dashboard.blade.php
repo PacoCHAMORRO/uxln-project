@@ -1,3 +1,3 @@
-@extends('theme.default')
+@extends('layouts.app')
 @section('content')
 @endsection
