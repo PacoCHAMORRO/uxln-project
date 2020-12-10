@@ -17,18 +17,13 @@ use App\User;
 |
 */
 
-
-
-/* Route::get('home', 'HomeController@myHome'); */
-
-/* Route::get('admin/institutions', 'InstitutionController@index');
-Route::post('admin/institutions', 'InstitutionController@store'); */
-
-/* Route::resource('/admin/institutions', 'InstitutionController'); */
-
 Route::group(['prefix' => 'admin'], function() {
+  Route::get('/', 'HomeController@index')->middleware('auth');
   Route::resource('/institutions', 'InstitutionController')->middleware('auth');
+  Route::resource('/collabs', 'CollabController')->middleware('auth');
 });
+
+
 
 Route::get('contact', function() {
     return 'Contact Us';
@@ -39,13 +34,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//Route::Resource('/institutions', 'InstitutionController');
-
-//Route::group(['prefix' => 'institutions'], function() {
-  //  Route::Resource('/{institution}/collabs', 'CollabController');
-//});
-
 Route::Resource('/users', 'UserController');
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

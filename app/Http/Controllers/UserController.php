@@ -17,7 +17,7 @@ class UserController extends ApiController
     {
         $users = User::all();
 
-        return $this->showAll($users);
+        
     }
 
     /**
