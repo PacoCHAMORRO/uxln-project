@@ -20,8 +20,8 @@
           <a href="{{ url('admin/collabs') }}">
             <i class="fas fa-sitemap"></i>Colaboraciones</a>
         </li>
-        <li class="{{ Request::is('users') ? 'active' : '' }}">
-          <a href="users">
+        <li class="{{ Request::is('admin/users') ? 'active' : '' }}">
+          <a href="{{ url('admin/users') }}">
             <i class="fas fa-users"></i>Usuarios</a>
         </li>
         <li class="{{ Request::is('workshops') ? 'active' : '' }}">

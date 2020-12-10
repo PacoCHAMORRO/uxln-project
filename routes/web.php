@@ -21,6 +21,7 @@ Route::group(['prefix' => 'admin'], function() {
   Route::get('/', 'HomeController@index')->middleware('auth');
   Route::resource('/institutions', 'InstitutionController')->middleware('auth');
   Route::resource('/collabs', 'CollabController')->middleware('auth');
+  Route::resource('/users', 'UserController')->middleware('auth');
 });
 
 

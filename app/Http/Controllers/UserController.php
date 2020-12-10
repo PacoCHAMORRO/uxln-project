@@ -17,7 +17,9 @@ class UserController extends ApiController
     {
         $users = User::all();
 
-        
+        /* return $this->showAll($users); */ // API RESPONSE
+
+        return view('admin-users', compact('users'));
     }
 
     /**
@@ -41,11 +43,13 @@ class UserController extends ApiController
         $data['password'] = bcrypt($request->password);
         $data['verified'] = User::UNVERIFIED_USER;
         $data['verification_token'] = User::generateVerificationCode();
-        $data['admin'] = User::REGULAR_USER;
+        $data['admin'] = $request->admin;
 
         $user = User::create($data);
 
-        return $this->showOne($user, 201);
+        /* return $this->showOne($user, 201); */ // API Response
+
+        return back();
     }
 
     /**
@@ -101,7 +105,8 @@ class UserController extends ApiController
 
         $user->save();
 
-        return $this->showOne($user);
+        /* return $this->showOne($user); */ // API Response
+        return back();
     }
 
     /**
@@ -114,6 +119,8 @@ class UserController extends ApiController
     {
         $user->delete();
 
-        return $this->showOne($user);
+        /* return $this->showOne($user); */ // API Response
+
+        return back();
     }
 }

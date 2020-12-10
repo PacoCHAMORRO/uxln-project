@@ -7,9 +7,11 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Str;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, SoftDeletes;
 
     const VERIFIED_USER = '1';
     const UNVERIFIED_USER = '0';
@@ -41,6 +43,11 @@ class User extends Authenticatable
         'remember_token',
         'verification_token',
     ];
+
+    /**
+     * Soft delete
+     */
+    protected $date = ['delete_at'];
 
     public function setNameAttribute($name)
     {
