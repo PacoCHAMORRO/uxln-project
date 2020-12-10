@@ -14,6 +14,11 @@ class Institution extends Model
         'logo'
     ];
 
+    // Accessor
+    public function getNameAttribute($value) {
+        return ucwords($value);
+    }
+
     public function collabs()
     {
         return $this->hasMany(Collab::class);

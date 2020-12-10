@@ -49,6 +49,7 @@ class User extends Authenticatable
      */
     protected $date = ['delete_at'];
 
+    // Accesors and Mutators
     public function setNameAttribute($name)
     {
         $this->attributes['name'] = strtolower($name);

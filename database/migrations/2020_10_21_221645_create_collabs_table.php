@@ -19,7 +19,7 @@ class CreateCollabsTable extends Migration
             $table->foreign('institution_id')->references('id')->on('institutions')->onDelete('cascade');
             $table->string('category');
             $table->string('title');
-            $table->date('date');
+            $table->date('date')->nullable();
         });
     }
 

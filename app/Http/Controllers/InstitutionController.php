@@ -31,18 +31,18 @@ class InstitutionController extends Controller
      */
     public function store(Request $request)
     {
-        /* $rules = [
+         $rules = [
             'name' => 'required',
-            'logo' => 'required|image',
-            'link' => 'required',
-            ''
+            'logo' => 'image',
         ];
-
-        $this->validate($request, $rules); */
 
         $data = $request->all();
 
-        $data['logo'] = $request->logo->store(''); 
+        $this->validate($request, $rules);
+
+        if ($request->hasFile('logo')) {
+            $data['logo'] = $request->logo->store(''); 
+        }
 
         $institution = Institution::create($data);
         
