@@ -49,4 +49,10 @@ class HomeController extends Controller
     {
         return view('contact');
     }
+
+    public function donation()
+    {
+        return view('donate');
+    }
+
 }

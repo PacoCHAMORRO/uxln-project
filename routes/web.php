@@ -22,6 +22,7 @@ Route::get('/about-us', 'HomeController@aboutUs');
 Route::get('/ecosystem', 'HomeController@ecosystem');
 Route::get('/template/{institution}', 'HomeController@template');
 Route::get('/contact', 'HomeController@contact');
+Route::get('/donation', 'HomeController@donation');
 
 
 Route::group(['prefix' => 'admin'], function() {

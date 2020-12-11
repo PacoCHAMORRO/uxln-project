@@ -24,9 +24,9 @@
                   </li>
                   <li class="rd-nav-item {{ Request::is('contact') ? 'active' : '' }}"><a class="rd-nav-link" href="{{ url('contact') }}">Contacto</a>
                   </li>
-                </ul><a class="button button-primary button-sm" href="donation.html">Dona</a>
+                </ul><a class="button button-primary button-sm" href="{{ url('donation') }}">Dona</a>
               </div>
-            </div><a class="button button-primary button-sm" href="donation.html">Dona</a>
+            </div><a class="button button-primary button-sm" href="{{ url('donation') }}">Dona</a>
           </div>
         </div>
       </nav>
