@@ -25,8 +25,9 @@ _Esté proyecto esta desarollado para la Organización no Gubernamental "Unión 
 5. Creas la base de datos en tu sistema gestor de bases de datos
 6. Configurar nombre de base de datos en _.env_ y ejecutar migraciones: `php artisan migrate --seed`
 
-_Ruta de Administardor: api/institutions_ <br>
-_Ruta de Api: /admin o /login_ <br>
+_Ruta de Administardor: /admin o /login_ <br>
+_Ruta de Api: api/institutions_
+
 ---
 
 ## Cuentas de Github´s: 🖇️
