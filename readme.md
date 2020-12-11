@@ -28,5 +28,5 @@ _Esté proyecto esta desarollado para la Organización no Gubernamental "Unión 
 ---
 
 ## Cuentas de Github´s: 🖇️
-| [<img src="https://avatars3.githubusercontent.com/u/58959667?s=460&u=70b767f334dfea4f9f2c108532a6701f29e25c8e&v=4" width="100px;"/><br/><sub><b>Daniel Ruiz</b></sub>](https://github.com/Daniel-Ruiz-Gtz)<br/>[💻]() [📖]() [👀]() [✅]() | [<img src="https://avatars1.githubusercontent.com/u/59038283?s=460&u=5166f146a13d99110062d530709517442d2782da&v=4" width="100px;"/><br /><sub><b>Paco Chamorro</b></sub>](https://github.com/PacoCHAMORRO)<br />[💻]() [📖]() [👀]() [✅]()| 
+| [<img src="https://avatars3.githubusercontent.com/u/39574410?s=400&v=4" width="100px;"/><br /><sub><b>Abdel Aguilar</b></sub>](https://github.com/abdelmaster)<br />[💻](https://github.com/IBM/BlueXolo/commits?author=abdelmaster) [📖]() [👀](#review-abdelmaster "Reviewed Pull Requests") [✅]() | [<img src="https://avatars2.githubusercontent.com/u/45430016?s=400&v=4" width="100px;"/><br /><sub><b>Jaime Alejandro</b></sub>](https://github.com/jarryfull)<br />[💻](https://github.com/IBM/BlueXolo/commits?author=jarryfull) [📖]() [👀](#review-jarryfull "Reviewed Pull Requests") [✅]()     |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
