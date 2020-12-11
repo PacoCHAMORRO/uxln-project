@@ -6,7 +6,7 @@ _"El objetivo es que experimenten desarrollar un sistema pensando como un *full 
 
 ## Integrantes 🤖
 
-_Paco Chamorro_<br>
+_Francisco Chamorro_<br>
 _Daniel Ruiz_
 ---
 
@@ -25,6 +25,8 @@ _Esté proyecto esta desarollado para la Organización no Gubernamental "Unión 
 5. Creas la base de datos en tu sistema gestor de bases de datos
 6. Configurar nombre de base de datos en _.env_ y ejecutar migraciones: `php artisan migrate --seed`
 
+_Ruta de Administardor: api/institutions_ <br>
+_Ruta de Api: /admin o /login_ <br>
 ---
 
 ## Cuentas de Github´s: 🖇️
