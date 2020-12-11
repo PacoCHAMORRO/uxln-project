@@ -1,4 +1,5 @@
 @extends('home-theme.master')
+@section('title', 'Nuestro Ecosistema')
 @section('styles')
     <!-- Bootstrap CSS -->
     <!-- Owl carousel -->

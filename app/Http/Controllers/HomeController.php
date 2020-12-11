@@ -52,7 +52,7 @@ class HomeController extends Controller
 
     public function donation()
     {
-        return view('donate');
+        return view('donation');
     }
 
 }

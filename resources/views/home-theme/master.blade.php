@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="en">
   <head>
-    <title>Principal</title>
+    <title>UXLN - @yield('title')</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,7 +35,7 @@
         <div class="container wow-outer">
           <div class="wow fadeIn">
             <div class="row row-50 row-lg-60">
-              <div class="col-12"><a href="index.html"><img src="home-theme/images/logo-white-415x103.png" alt="" width="207" height="51"/></a></div>
+              <div class="col-12"><a href="{{ url('/') }}"><img src="home-theme/images/logo-white-415x103.png" alt="" width="207" height="51"/></a></div>
               <div class="col-12">
                 <ul class="footer-minimal-nav">
                   <li><a href="index.html">Principal</a></li>

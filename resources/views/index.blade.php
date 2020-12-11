@@ -1,4 +1,5 @@
 @extends('home-theme.master')
+@section('title', 'Home')
 @section('content')
 <!-- Swiper-->
 <section class="section section-lg section-main-bunner section-main-bunner-filter">

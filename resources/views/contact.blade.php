@@ -1,4 +1,5 @@
 @extends('home-theme.master')
+@section('title', 'Contacto')
 @section('content')
 <section class="parallax-container" data-parallax-img="home-theme/images/bg-breadcrumbs-about.jpg">
     <div class="parallax-content breadcrumbs-custom context-dark">

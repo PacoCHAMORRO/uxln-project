@@ -1,5 +1,6 @@
 @extends('home-theme.master')
-@section('name')
+@section('title', 'Dona ahora!')
+@section('content')
 <section class="parallax-container" data-parallax-img="home-theme/images/bg-breadcrumbs-about2.jpg">
     <div class="parallax-content breadcrumbs-custom context-dark">
       <div class="container">
