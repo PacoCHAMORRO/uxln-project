@@ -6,7 +6,7 @@ _"El objetivo es que experimenten desarrollar un sistema pensando como un *full 
 
 ## Integrantes 🤖
 
-_Paco Chamorro_
+_Paco Chamorro_<br>
 _Daniel Ruiz_
 ---
 
@@ -18,7 +18,7 @@ _Esté proyecto esta desarollado para la Organización no Gubernamental "Unión 
 
 ## Instalación 🔧
 
-1. Clonar proyecto `git clone git@github.com:samuelmg/desarrollo-web.git` y cambiarse a directorio `cd desarrollo-web`
+1. Clonar proyecto `git clone https://github.com/PacoCHAMORRO/uxln-project` y cambiarse a directorio `cd uxln-project`
 2. Instalar dependiencias mediante composer: `composer install`
 3. Crear archivo de variables de entorno: `cp .env.example .env`
 4. Crear llave: `php artisan key:generate`
