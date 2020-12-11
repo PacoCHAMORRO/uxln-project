@@ -35,14 +35,15 @@ $factory->define(User::class, function (Faker $faker) {
 $factory->define(Institution::class, function (Faker $faker) {
     return [
         'name' => $faker->unique()->company,
-        'logo' => $faker->randomElement(['logo-1.jpg', 'logo-2.jpg', 'logo-3.jpg']),
+        'logo' => $faker->randomElement(['img-1.png', 'img-2.png', 'img-3.png']),
         'link' => $faker->url,
+        'description' => $faker->paragraph($nbSentences = 3, $variableNbSentences = true),
     ];
 });
 
 $factory->define(Collab::class, function (Faker $faker) {
     return [
-        'category' => $faker->randomElement(['Salud', 'Educacion','DesarrolloSocial', 'Recreacion']),
+        'category' => $faker->randomElement(['Salud', 'Educación','Desarrollo Social', 'Recreación']),
         'title' => $faker->sentence($nbWords = 6, $variableNbWords = true),
         'date' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'institution_id' => Institution::all()->random()->id,

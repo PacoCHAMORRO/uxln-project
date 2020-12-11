@@ -17,19 +17,19 @@ use App\User;
 |
 */
 
+Route::get('/', 'HomeController@index');
+Route::get('/about-us', 'HomeController@aboutUs');
+Route::get('/ecosystem', 'HomeController@ecosystem');
+Route::get('/template/{institution}', 'HomeController@template');
+Route::get('/contact', 'HomeController@contact');
+
+
 Route::group(['prefix' => 'admin'], function() {
-  Route::get('/', 'HomeController@index')->middleware('auth');
-  Route::resource('/institutions', 'InstitutionController')->middleware('auth');
-  Route::resource('/collabs', 'CollabController')->middleware('auth');
+  Route::get('/', 'InstitutionController@index')->middleware('auth');
+  Route::resource('/institutions', 'InstitutionController');
+  Route::resource('/collabs', 'CollabController');
   Route::resource('/users', 'UserController')->middleware('auth');
 });
-
-
-
-Route::get('contact', function() {
-    return 'Contact Us';
-});
-
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

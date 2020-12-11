@@ -22,7 +22,7 @@ class Collab extends Model
 
     public function getCategoryAttribute($value)
     {
-        return strtoupper($value);
+        return ucwords($value);
     }
 
     public function institution()

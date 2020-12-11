@@ -13,12 +13,16 @@ class InstitutionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index', 'show');
+    }
+
     public function index()
     {
         /* $institutions = Institution::all(); 
         return $this->showAll($institutions); */
-
-        /* return new InstitutionCollection(Institution::all()); */
         $institutions = Institution::all();
         return view('admin-institutions', compact('institutions'));
     }
@@ -57,7 +61,7 @@ class InstitutionController extends Controller
      */
     public function show(Institution $institution)
     {
-        return $this->showOne($institution);
+        return view('template', compact('institution'));
     }
 
     /**

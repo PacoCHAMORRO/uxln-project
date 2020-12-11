@@ -21,10 +21,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('/institutions', 'InstitutionController');
+/* Route::apiResource('/institutions', 'InstitutionController'); */
 
-Route::group(['prefix' => 'institutions'], function() {
+/* Route::group(['prefix' => 'institutions'], function() {
     Route::apiResource('/{institution}/collabs', 'CollabController');
-});
+}); */
 
-Route::apiResource('/users', 'UserController');
+/* Route::apiResource('/users', 'UserController'); */
+
+Route::get('institutions', 'InstitutionAPIController@index');

@@ -44,10 +44,10 @@
                 </a>
               </div>
             </td>
-            <td class="desc">{{ $institution->name }}</td>
+            <td>{{ $institution->name }}</td>
             <td>
               <button type="button" class="btn btn-link">
-                <i class="fa fa-link"></i>&nbsp; {{ $institution->link }}</button>
+                <i class="fa fa-link"></i>&nbsp; {{ \Illuminate\Support\Str::limit($institution->link, 25, $end='...') }}</button>
               <!-- <span class="status--process"></span> -->
             </td>
             <td>
@@ -97,7 +97,7 @@
               <label for="text-input" class=" form-control-label">Nombre</label>
             </div>
             <div class="col-12 col-md-9">
-              <input type="text" name="name" placeholder="Casa Hogar A.C." class="form-control">
+              <input type="text" name="name" placeholder="Casa Hogar A.C." class="form-control" required>
               <small class="form-text text-muted">Nombre de la casa hogar</small>
             </div>
           </div>

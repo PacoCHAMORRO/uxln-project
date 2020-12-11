@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Institution;
 
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        /* $this->middleware('auth'); */
     }
 
     /**
@@ -25,6 +26,27 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('layouts.app');
+        return view('index');
+    }
+
+    public function aboutUs()
+    {
+        return view('about-us');
+    }
+
+    public function ecosystem()
+    {
+        $institutions = Institution::all();
+        return view('ecosystem', compact('institutions'));
+    }
+
+    public function template(Institution $institution)
+    {
+        return view('template', compact('institution'));
+    }
+
+    public function contact()
+    {
+        return view('contact');
     }
 }

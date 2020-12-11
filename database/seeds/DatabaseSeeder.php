@@ -21,9 +21,9 @@ class DatabaseSeeder extends Seeder
         Institution::truncate();
         Collab::truncate();
 
-        $usersQuantity = 20;
-        $institutionsQuantity = 40;
-        $collabsQuantity = 200;
+        $usersQuantity = 10;
+        $institutionsQuantity = 18;
+        $collabsQuantity = 250;
 
         factory(User::class, $usersQuantity)->create();
         factory(Institution::class, $institutionsQuantity)->create();
