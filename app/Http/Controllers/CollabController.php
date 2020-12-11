@@ -52,7 +52,12 @@ class CollabController extends Controller
         $collab->date = $request->date;
         $collab->save();
 
-        return back();
+        return back()->with([
+            'alert-type' => 'alert-success',
+            'badge-type' => 'badge-success',
+            'message-title' => 'Añadido',
+            'message' => 'La colaboración ha sido añadida a la base de datos.',
+        ]);
     }
 
     /**
@@ -103,7 +108,12 @@ class CollabController extends Controller
         $updated->save();
         /* $institution->update($request->all()); */
 
-        return back();
+        return back()->with([
+            'alert-type' => 'alert-success',
+            'badge-type' => 'badge-success',
+            'message-title' => 'Guardado',
+            'message' => 'Colaboración actualizada correctamente',
+        ]);
     }
 
     /**
@@ -116,6 +126,11 @@ class CollabController extends Controller
     {
         $collab->delete();
 
-        return back();
+        return back()->with([
+            'alert-type' => 'alert-danger',
+            'badge-type' => 'badge-danger',
+            'message-title' => 'Eliminado',
+            'message' => 'Colaboración eliminada exitosamente',
+        ]);
     }
 }

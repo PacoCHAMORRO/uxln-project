@@ -49,7 +49,12 @@ class UserController extends ApiController
 
         /* return $this->showOne($user, 201); */ // API Response
 
-        return back();
+        return back()->with([
+            'alert-type' => 'alert-success',
+            'badge-type' => 'badge-success',
+            'message-title' => 'Agregado',
+            'message' => 'Usuario agregado con éxito a la base de datos',
+        ]);
     }
 
     /**
@@ -121,6 +126,11 @@ class UserController extends ApiController
 
         /* return $this->showOne($user); */ // API Response
 
-        return back();
+        return back()->with([
+            'alert-type' => 'alert-danger',
+            'badge-type' => 'badge-danger',
+            'message-title' => 'Eliminado',
+            'message' => 'Usuario eliminado con éxito',
+        ]);
     }
 }

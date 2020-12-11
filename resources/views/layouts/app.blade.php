@@ -122,6 +122,7 @@
                 <div class="section__content section__content--p20">
                     <div class="container-fluid">
                         <div class="row">
+                            @include('partials.message')
 
                             @section('content')
                             @show

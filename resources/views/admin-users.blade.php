@@ -147,7 +147,7 @@
                             <div class="form-check">
                                 <div class="checkbox">
                                     <label for="admin" class="form-check-label">
-                                        <input type="checkbox" name=admin class="form-check-input">
+                                        <input type="checkbox" name=admin class="form-check-input" value="on" checked>
                                         Admin
                                     </label>
                                 </div>

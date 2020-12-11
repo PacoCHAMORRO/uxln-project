@@ -50,7 +50,12 @@ class InstitutionController extends Controller
 
         $institution = Institution::create($data);
         
-        return back();
+        return back()->with([
+            'alert-type' => 'alert-success',
+            'badge-type' => 'badge-success',
+            'message-title' => 'Agregado',
+            'message' => 'Recurso añadido con éxito',
+        ]);
     }
 
     /**
@@ -101,7 +106,12 @@ class InstitutionController extends Controller
         $updated->save();
         /* $institution->update($request->all()); */
 
-        return back();
+        return back()->with([
+            'alert-type' => 'alert-success',
+            'badge-type' => 'badge-success',
+            'message-title' => 'Guardado',
+            'message' => 'Recurso actualizado con éxito',
+        ]);
     }
     
 
@@ -116,6 +126,11 @@ class InstitutionController extends Controller
         Storage::delete($institution->logo);
         $institution->delete();
         
-        return back();
+        return back()->with([
+            'alert-type' => 'alert-danger',
+            'badge-type' => 'badge-danger',
+            'message-title' => 'Eliminado',
+            'message' => 'Recurso eliminado con éxito',
+        ]);
     }
 }
