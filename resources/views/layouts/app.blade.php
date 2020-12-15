@@ -27,6 +27,10 @@
     <link href="{{ asset('theme/vendor/mdi-font/css/material-design-iconic-font.min.css') }}" rel="stylesheet"
         media="all">
 
+    {{-- Google Fonts --}}
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
+
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('theme/vendor/bootstrap-4.1/bootstrap.min.css') }}" rel="stylesheet">
     {{-- Vendor CSS --}}
@@ -41,6 +45,8 @@
 
     <!-- DataTables CDN -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+{{--     <link href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" rel="stylesheet" media="all">       --}}      
+{{--     <link href="https://cdn.datatables.net/responsive/2.2.6/css/responsive.dataTables.min.css" rel="stylesheet" media="all">      --}}       
 
     <!-- Main CSS-->
     <link href="{{ asset('theme/css/theme.css') }}" rel="stylesheet" media="all">
@@ -120,7 +126,7 @@
             @include('theme.header')
             <div class="main-content">
                 <div class="section__content section__content--p20">
-                    <div class="container-fluid">
+                    <div class="container align-items-center">
                         <div class="row">
                             @include('partials.message')
 
@@ -157,10 +163,13 @@
     <!-- DataTable JS-->
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
-s
+    
+    {{-- DataTable Responsive Extension --}}
+    {{-- <script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script> --}}
+        
     <!-- Main JS-->
     <script src="{{ asset('theme/js/main.js') }}"></script>
-{{--  --}}
+
     {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
 
     @yield('script')

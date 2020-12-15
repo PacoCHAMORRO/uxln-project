@@ -1,27 +1,19 @@
 @extends('layouts.app')
 @section('content')
-<div class="row">
   <div class="col-sm-12">
     <!-- DATA TABLE -->
-    <h3 class="title-5 m-b-35">directorio de instituciones</h3>
-    <div class="table-data__tool">
-      <div class="table-data__tool-right">
-        <button class="au-btn au-btn-icon au-btn--green au-btn--small" data-toggle="modal" data-target="#addModal">
-          <i class="zmdi zmdi-plus"></i>Agregar Institución</button>
-        <button class="btn btn-danger">
-          <i class="fa-trahs-o"></i>Eliminar</button>
+    <div class="d-flex">
+      <h2 class="m-b-55 add-item admin-title">Directorio de Casas Hogar</h2>
+      <div class="ml-auto">
+        <button class="au-btn au-btn-icon au-btn--blue2 au-btn--small add-item-btn" data-toggle="modal" data-target="#addModal">
+          <i class="zmdi zmdi-plus"></i>Agregar Casa Hogar
+        </button>
       </div>
     </div>
     <div class="table-responsive table-responsive-data2">
-      <table id="datatable" class="table table-data2">
+      <table id="datatable" class="table table-data2 display nowrap" cellspacing="0">
         <thead>
           <tr>
-            <th>
-              <label class="au-checkbox">
-                <input type="checkbox">
-                <span class="au-checkmark"></span>
-              </label>
-            </th>
             <th>logo</th>
             <th>nombre</th>
             <th>sitio web</th>
@@ -31,12 +23,6 @@
         <tbody>
           @foreach ($institutions as $institution)
           <tr class="tr-shadow">
-            <td>
-              <label class="au-checkbox">
-                <input type="checkbox">
-                <span class="au-checkmark"></span>
-              </label>
-            </td>
             <td>
               <div class="image image-table">
                 <a href="#">
@@ -72,7 +58,6 @@
     </div>
     <!-- END DATA TABLE -->
   </div>
-</div>
 @endsection
 
 @section('modals')
@@ -128,16 +113,6 @@
               <input type="file" name="logo" class="form-control-file">
             </div>
           </div>
-          <div class="row form-group">
-            <div class="col col-md-3">
-              <label for="file-multiple-input" class=" form-control-label">Fotografías de la institución
-                (opcional)</label>
-            </div>
-            <div class="col-12 col-md-9">
-              <input type="file" name="file-multiple-input" multiple="" class="form-control-file">
-            </div>
-          </div>
-
           {{-- END ADD FORM --}}
         </div>
         <div class="modal-footer">
@@ -205,16 +180,6 @@
               <input type="file" name="logo" class="form-control-file">
             </div>
           </div>
-          <div class="row form-group">
-            <div class="col col-md-3">
-              <label for="file-multiple-input" class=" form-control-label">Fotografías de la institución
-                (opcional)</label>
-            </div>
-            <div class="col-12 col-md-9">
-              <input type="file" id="pictures" name="file-multiple-input" multiple="" class="form-control-file">
-            </div>
-          </div>
-
           {{-- END EDIT FORM --}}
         </div>
         <div class="modal-footer">
@@ -314,36 +279,22 @@
     }
   });
 
+  /* {
+      details: {
+          display: $.fn.dataTable.Responsive.display.childRowImmediate,
+          type: 'none',
+          target: ''
+      } */
+
 
   $(document).ready(function () {
-    console.log("Mi admin")
     var table = $('#datatable').DataTable();
-    console.log(table)
-
-    console.log("sale de tabla");
 
     // Start Edit record
     $('#datatable').on('click', '.edit', function () {
 
       $id_institution = $(this).val();
       console.log($id_institution);
-
-      /*  $tr = $(this).closest('tr');
-       if ($($tr).hasClass('child')) {
-         $tr = $tr.prev('.parent');
-       } */
-      /*
-      var data = table.row($tr).data();
-
-      data[0] = $(this).val();
-      data[1] = "";
-      data[2] = "";
-      data[3] = "";
-      data[4] = "";
-
-      for (var i of data) {
-        console.log(i);
-      } */
 
       $('#editForm').attr('action', '/admin/institutions/' + $id_institution);
 

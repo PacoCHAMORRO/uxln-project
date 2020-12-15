@@ -7,3 +7,14 @@
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
+
+.admin-title {
+  font-family: 'Comfortaa', cursive;
+  color: #333;
+}
+
+.add-item-btn {
+  -webkit-box-shadow: 3px 2px 5px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 3px 2px 5px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 3px 4px 8px 5px rgba(0, 0, 0, 0.1);
+}

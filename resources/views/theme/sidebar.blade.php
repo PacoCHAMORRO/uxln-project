@@ -1,9 +1,12 @@
 <!-- MENU SIDEBAR-->
 <aside class="menu-sidebar d-none d-lg-block">
   <div class="logo">
-    <a href="#">
-      <img src="images/icon/logo.png" alt="UXLN Admin" />
-    </a>
+    <div class="logo-container">
+      <a href="#">
+        <img src="{{ asset('theme/images/icon/logo.png') }}" alt="logo" />
+      </a>
+      UXLN Admin
+    </div>
   </div>
   <div class="menu-sidebar__content js-scrollbar1">
     <nav class="navbar-sidebar">
