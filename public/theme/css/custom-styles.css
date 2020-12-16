@@ -18,3 +18,17 @@
   -moz-box-shadow: 3px 2px 5px 0px rgba(0, 0, 0, 0.1);
   box-shadow: 3px 4px 8px 5px rgba(0, 0, 0, 0.1);
 }
+
+.page-item.active .page-link {
+  background-color: #3282b8;
+  border-color: #3282b8;
+}
+
+a {
+  color: #3282b8
+}
+
+.btn-link,
+.page-link {
+  color:#3282b8;
+}
