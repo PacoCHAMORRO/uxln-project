@@ -278,7 +278,7 @@ section {
 /*Page Objects*/
 .page-wrapper {
     overflow: hidden;
-   /*  background-image: url('../images/background.jpg'); */
+    background-image: url('../images/background-dots.png');
     padding-bottom: 8vh;
 }
 
@@ -468,12 +468,12 @@ section {
     background: #50d3cc;
 }
 
-.au-btn--blue2 {
-    background: #41aea9;
+.au-btn--red {
+    background: #B84544;
 }
 
-.au-btn--blue2:hover {
-    background: #50d3cc;
+.au-btn--red:hover {
+    background: #   B84544;
 }
 
 .au-btn--block {
@@ -1636,7 +1636,7 @@ section {
     height: -moz-calc(100vh - 55px);
     height: calc(100vh - 55px);
     /* */
-    background: #213e3b;
+    background: #1b262c;
 }
 
 .navbar-sidebar {
@@ -1646,7 +1646,7 @@ section {
 
 .navbar-sidebar .navbar__list li a {
     display: block;
-    color: #41aea9;
+    color: #bbe1fa;
     font-size: 16px;
     padding: 15px 0;
 }
@@ -1656,11 +1656,11 @@ section {
 }
 
 .navbar-sidebar .navbar__list li a:hover {
-    color: #a6f6f1;
+    color: #fff;
 }
 
 .navbar-sidebar .navbar__list li.active > a {
-    color: #e8ffff;
+    color: #fff;
 }
 
 .has-sub {

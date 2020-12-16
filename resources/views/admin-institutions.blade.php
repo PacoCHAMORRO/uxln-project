@@ -2,10 +2,13 @@
 @section('content')
   <div class="col-sm-12">
     <!-- DATA TABLE -->
-    <div class="d-flex">
-      <h2 class="m-b-55 add-item admin-title">Directorio de Casas Hogar</h2>
+    <div class="d-flex flex-row align-items-center m-b-55">
+      <div>
+        <img src="{{ url('theme/images/icon/casa-hogar-icon.png') }}" alt="">
+      </div>
+      <h2 class="add-item admin-title pl-3">Directorio de Casas Hogar</h2>
       <div class="ml-auto">
-        <button class="au-btn au-btn-icon au-btn--blue2 au-btn--small add-item-btn" data-toggle="modal" data-target="#addModal">
+        <button class="au-btn au-btn-icon au-btn--red au-btn--small add-item-btn" data-toggle="modal" data-target="#addModal">
           <i class="zmdi zmdi-plus"></i>Agregar Casa Hogar
         </button>
       </div>
