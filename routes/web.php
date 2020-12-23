@@ -26,10 +26,11 @@ Route::get('/donation', 'HomeController@donation');
 
 
 Route::group(['prefix' => 'admin'], function() {
-  Route::get('/', 'InstitutionController@index')->middleware('auth');
+  Route::get('/', 'AdminController@index')->middleware('auth');
   Route::resource('/institutions', 'InstitutionController');
   Route::resource('/collabs', 'CollabController');
   Route::resource('/users', 'UserController')->middleware('auth');
+  Route::resource('/workshops', 'WorkshopController')->middleware('auth');
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

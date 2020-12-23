@@ -5,6 +5,7 @@ use App\Institution;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
+/* use App\Http\Controllers\Controller; */
 
 class InstitutionController extends Controller
 {
@@ -24,7 +25,7 @@ class InstitutionController extends Controller
         /* $institutions = Institution::all(); 
         return $this->showAll($institutions); */
         $institutions = Institution::all();
-        return view('admin-institutions', compact('institutions'));
+        return view('admin.admin-institutions', compact('institutions'));
     }
 
     /**
@@ -77,40 +78,31 @@ class InstitutionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Institution $institution)
-    {
-       
-       
+    {      
         if ($request->hasFile('logo')) {
             Storage::delete($institution->logo);
             $institution->logo = $request->logo->store('');
             $institution->save();
         }
 
-        /* dd($request->all()); */
-
         $req = $request->all();
 
         $name = $req['name'];
         $link = $req['link'];
-        /* $logo = $req['logo']; */
         $description = $req['description'];
 
         $updated = Institution::find($institution->id);
-
         $updated->name = $name ? $name : $updated->name;
         $updated->link = $link ? $link : $updated->link;
-        /* $updated->logo = $logo ? $logo : $updated->logo; */
         $updated->description = $description ? $description : $updated->description;
 
-        /* dd($updated); */
         $updated->save();
-        /* $institution->update($request->all()); */
 
         return back()->with([
             'alert-type' => 'alert-success',
             'badge-type' => 'badge-success',
             'message-title' => 'Guardado',
-            'message' => 'Recurso actualizado con éxito',
+            'message' => 'Institución actualizada',
         ]);
     }
     
@@ -130,7 +122,7 @@ class InstitutionController extends Controller
             'alert-type' => 'alert-danger',
             'badge-type' => 'badge-danger',
             'message-title' => 'Eliminado',
-            'message' => 'Recurso eliminado con éxito',
+            'message' => 'Se ha eliminado la institución de la base de datos.',
         ]);
     }
 }

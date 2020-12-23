@@ -1,28 +1,22 @@
 @extends('layouts.app')
 @section('content')
-<div class="row">
     <div class="col-sm-12">
         <!-- DATA TABLE -->
-        <h3 class="title-5 m-b-35">Usuarios</h3>
-        <div class="table-data__tool">
-            <div class="table-data__tool-right">
-                <button class="au-btn au-btn-icon au-btn--green au-btn--small" data-toggle="modal"
-                    data-target="#addModal">
-                    <i class="zmdi zmdi-plus"></i>Agregar Usuario</button>
-                <button class="btn btn-danger">
-                    <i class="fa-trahs-o"></i>Eliminar</button>
+        <div class="d-flex flex-row align-items-center m-b-55">
+            <div>
+              <img src="{{ url('theme/images/icon/admin-users-icon.png') }}" alt="">
             </div>
-        </div>
+            <h2 class="add-item admin-title pl-3">Usuarios</h2>
+            <div class="ml-auto">
+              <button class="au-btn au-btn-icon au-btn--blue au-btn--small add-item-btn" data-toggle="modal" data-target="#addModal">
+                <i class="zmdi zmdi-plus"></i>Agregar Usuario
+              </button>
+            </div>
+          </div>
         <div class="table-responsive table-responsive-data2">
             <table id="datatable" class="table table-data2">
                 <thead>
                     <tr>
-                        <th>
-                            <label class="au-checkbox">
-                                <input type="checkbox">
-                                <span class="au-checkmark"></span>
-                            </label>
-                        </th>
                         <th>nombre</th>
                         <th>email</th>
                         <th>admin</th>
@@ -33,25 +27,16 @@
                     @foreach ($users as $user)
                     <tr class="tr-shadow">
                         <td>
-                            <label class="au-checkbox">
-                                <input type="checkbox">
-                                <span class="au-checkmark"></span>
-                            </label>
-                        </td>
-                        <td>
                             {{ $user->name }}
                         </td>
                         <td>{{ $user->email }}</td>
-                        <td>
-                            @if ($user->admin)
-
-                            @endif
-                            @if ($user->admin)
-                            <span class="success">Admin</span>
-                            @else
-                            <span class="primary">User</span>
-                            @endif
-                        </td>
+                        
+                        @if ($user->admin)
+                            <td class="text-success">Administrador</td>
+                       
+                        @else
+                            <td class="text-danger">Regular</td>
+                        @endif
                         <td>
                             <div class="table-data-feature">
                                 <button class="item edit" data-placement="top" title="Editar" value="{{ $user->id }}"
@@ -75,7 +60,7 @@
         </div>
         <!-- END DATA TABLE -->
     </div>
-</div>
+
 @endsection
 
 @section('modals')

@@ -85,7 +85,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
-                        
+                        @endif                        
                         
                         {{--   <div class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -103,14 +103,10 @@
                             </form>
                         </div>
                 </div> --}}
-                @endauth
                 </ul>
             </div>
     </div>
-    </nav>
-    @endguest
-    
-    @guest
+    </nav>  
         <main class="py-4">
             @yield('content')
         </main>

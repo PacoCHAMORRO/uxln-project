@@ -19,7 +19,7 @@ class UserController extends ApiController
 
         /* return $this->showAll($users); */ // API RESPONSE
 
-        return view('admin-users', compact('users'));
+        return view('admin.admin-users', compact('users'));
     }
 
     /**

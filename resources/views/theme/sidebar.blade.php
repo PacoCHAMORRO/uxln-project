@@ -1,12 +1,15 @@
 <!-- MENU SIDEBAR-->
 <aside class="menu-sidebar d-none d-lg-block">
-  <div class="logo">
+  <div class="logo d-flex justify-content-around">
     <div class="logo-container">
       <a href="#">
         <img src="{{ asset('theme/images/icon/logo.png') }}" alt="logo" />
       </a>
+    </div>
+    <div>
       UXLN Admin
     </div>
+      
   </div>
   <div class="menu-sidebar__content js-scrollbar1">
     <nav class="navbar-sidebar">
@@ -28,7 +31,7 @@
             <i class="fas fa-users"></i>Usuarios</a>
         </li>
         <li class="{{ Request::is('workshops') ? 'active' : '' }}">
-          <a href="#">
+          <a href="{{ url('admin/workshops') }}">
             <i class="fas fa-bullhorn"></i>Talleres</a>
         </li>
         <li>

@@ -1,65 +1,63 @@
 @extends('layouts.app')
 @section('content')
+<div class="row">
   <div class="col-sm-12">
     <!-- DATA TABLE -->
     <div class="d-flex flex-row align-items-center m-b-55">
       <div>
-        <img src="{{ url('theme/images/icon/admin-institutions-icon-2.png') }}" alt="">
+        <img src="{{ url('theme/images/icon/collabs-icon.png') }}" alt="">
       </div>
-      <h2 class="add-item admin-title pl-3">Directorio de Casas Hogar</h2>
+      <h2 class="add-item admin-title pl-3">Colaboraciones con Casas Hogar</h2>
       <div class="ml-auto">
         <button class="au-btn au-btn-icon au-btn--blue au-btn--small add-item-btn" data-toggle="modal" data-target="#addModal">
-          <i class="zmdi zmdi-plus"></i>Agregar Casa Hogar
+          <i class="zmdi zmdi-plus"></i>Agregar Colaboración
         </button>
       </div>
     </div>
     <div class="table-responsive table-responsive-data2">
-      <table id="datatable" class="table table-data2 display nowrap" cellspacing="0">
+      <table id="datatable" class="table table-data2">
         <thead>
           <tr>
-            <th>logo</th>
-            <th>nombre</th>
-            <th>sitio web</th>
+            <th>institución</th>
+            <th>título</th>
+            <th>categoría</th>
+            <th>fecha</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-          @foreach ($institutions as $institution)
+          @foreach ($collabs as $collab)
           <tr class="tr-shadow">
+            <td class="desc">{{ $collab->institution->name }}</td>
             <td>
-              <div class="image image-table">
-                <a href="#">
-                  <img src="{{ asset('img') . '/' . $institution->logo }}" alt="LOGO">
-                </a>
-              </div>
+              {{ $collab->title }}
             </td>
-            <td>{{ $institution->name }}</td>
             <td>
-              <button type="button" class="btn btn-link">
-                <i class="fa fa-link"></i>&nbsp; {{ \Illuminate\Support\Str::limit($institution->link, 25, $end='...') }}</button>
-              <!-- <span class="status--process"></span> -->
+              {{ $collab->category }}
+            </td>
+            <td>
+              {{ $collab->date }}
             </td>
             <td>
               <div class="table-data-feature">
-                <button class="item edit" data-placement="top" title="Editar" value="{{ $institution->id }}"
+                <button class="item edit" data-placement="top" title="Editar" value="{{ $collab->id }}"
                   data-toggle="modal" data-target="#editModal">
                   <i class="zmdi zmdi-edit"></i>
                 </button>
-              <button class="item delete" data-toggle="modal" value="{{ $institution->id }}" data-target="#deleteModal" data-placement="top" title="Eliminar">
+                <button class="item delete" data-toggle="modal" value="{{ $collab->id }}" data-target="#deleteModal" data-placement="top" title="Eliminar">
                   <i class="zmdi zmdi-delete"></i>
-                </button>
-                <button class="item" data-toggle="tooltip" data-placement="top" title="Más">
-                  <i class="zmdi zmdi-more"></i>
                 </button>
               </div>
             </td>
           </tr>
-          @endforeach
+          {{-- <tr class="spacer"></tr> --}}
+           @endforeach
         </tbody>
       </table>
     </div>
     <!-- END DATA TABLE -->
   </div>
+</div>
 @endsection
 
 @section('modals')
@@ -69,56 +67,63 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="largeModalLabel">Agregar Casa Hogar</h5>
+        <h5 class="modal-title" id="largeModalLabel">Agregar Colaboración</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
-      <form action="{{ action('InstitutionController@store') }}" method="POST" id="addForm"
+      <form action="{{ action('CollabController@store') }}" method="POST" id="addForm"
         enctype="multipart/form-data" class="form-horizontal">
         @csrf
         <div class="modal-body">
           {{-- ADD FORM --}}
           <div class="row form-group">
             <div class="col col-md-3">
-              <label for="text-input" class=" form-control-label">Nombre</label>
+              <label for="category" class=" form-control-label">Institución</label>
             </div>
             <div class="col-12 col-md-9">
-              <input type="text" name="name" placeholder="Casa Hogar A.C." class="form-control" required>
-              <small class="form-text text-muted">Nombre de la casa hogar</small>
+              <select name="institution_id">
+                @foreach ($institutions as $institution)
+                    <option value="{{ $institution->id }}">{{ $institution->name }}</option>
+                @endforeach
+              </select>
+              <small class="form-text text-muted">Nombre de la institución</small>
             </div>
           </div>
           <div class="row form-group">
             <div class="col col-md-3">
-              <label for="website-input" class=" form-control-label">Sitio web</label>
+              <label for="title" class=" form-control-label">Categoría</label>
             </div>
             <div class="col-12 col-md-9">
-              <input type="url" name="link" placeholder="URL" class="form-control">
-              <small class="help-block form-text">Introduzca el sitio web de la instituciones, preferentemente copiado
-                del sitio web oficial</small>
+              <select name="category">
+                <option value="Salud">Salud</option>
+                <option value="Educación">Educación</option>
+                <option value="Desarrollo Social">Desarrollo Social</option>
+                <option value="Recreación">Recreación</option>
+              </select>
             </div>
           </div>
           <div class="row form-group">
             <div class="col col-md-3">
-              <label for="textarea-input" class=" form-control-label">Descripción</label>
+              <label for="title" class=" form-control-label">Título</label>
             </div>
             <div class="col-12 col-md-9">
-              <textarea name="description" rows="9" placeholder="Describa el propósito de la organización..."
-                class="form-control"></textarea>
+              <input type="text" name="title" placeholder="Título" class="form-control">
+              <small class="help-block form-text">Título del evento/colaboración</small>
             </div>
           </div>
           <div class="row form-group">
             <div class="col col-md-3">
-              <label for="file-input" class=" form-control-label">Logotipo</label>
+              <label for="date" class=" form-control-label">Fecha</label>
             </div>
             <div class="col-12 col-md-9">
-              <input type="file" name="logo" class="form-control-file">
+              <input class="form-control" type="date" name="date">
             </div>
           </div>
           {{-- END ADD FORM --}}
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
           <button type="submit" class="btn btn-primary">Agregar</button>
         </div>
       </form>
@@ -134,7 +139,7 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="largeModalLabel">Editar Casa Hogar</h5>
+        <h5 class="modal-title" id="largeModalLabel">Editar Colaboración</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
@@ -148,38 +153,45 @@
           {{-- EDIT FORM --}}
           <div class="row form-group">
             <div class="col col-md-3">
-              <label for="text-input" class=" form-control-label">Nombre</label>
+              <label for="category" class=" form-control-label">Institución</label>
             </div>
             <div class="col-12 col-md-9">
-              <input type="text" id="name" name="name" placeholder="Casa Hogar A.C." class="form-control">
-              <small class="form-text text-muted">Nombre de la casa hogar</small>
+              <select name="institution_id">
+                @foreach ($institutions as $institution)
+                    <option value="{{ $institution->id }}">{{ $institution->name }}</option>
+                @endforeach
+              </select>
+              <small class="form-text text-muted">Nombre de la institución</small>
             </div>
           </div>
           <div class="row form-group">
             <div class="col col-md-3">
-              <label for="website-input" class=" form-control-label">Sitio web</label>
+              <label for="title" class=" form-control-label">Categoría</label>
             </div>
             <div class="col-12 col-md-9">
-              <input type="url" id="link" name="link" placeholder="URL" class="form-control">
-              <small class="help-block form-text">Introduzca el sitio web de la instituciones, preferentemente copiado
-                del sitio web oficial</small>
+              <select name="category">
+                <option value="Salud">Salud</option>
+                <option value="Educación">Educación</option>
+                <option value="Desarrollo Social">Desarrollo Social</option>
+                <option value="Recreación">Recreación</option>
+              </select>
             </div>
           </div>
           <div class="row form-group">
             <div class="col col-md-3">
-              <label for="textarea-input" class=" form-control-label">Descripción</label>
+              <label for="title" class=" form-control-label">Título</label>
             </div>
             <div class="col-12 col-md-9">
-              <textarea name="description" id="description" rows="9"
-                placeholder="Describa el propósito de la organización..." class="form-control"></textarea>
+              <input type="text" name="title" placeholder="Título" class="form-control">
+              <small class="help-block form-text">Título del evento/colaboración</small>
             </div>
           </div>
           <div class="row form-group">
             <div class="col col-md-3">
-              <label for="file-input" class=" form-control-label">Logotipo</label>
+              <label for="date" class=" form-control-label">Fecha</label>
             </div>
             <div class="col-12 col-md-9">
-              <input type="file" name="logo" class="form-control-file">
+              <input class="form-control" type="date" name="date">
             </div>
           </div>
           {{-- END EDIT FORM --}}
@@ -201,13 +213,13 @@
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="largeModalLabel">Eliminar Casa Hogar</h5>
+        <h5 class="modal-title" id="largeModalLabel">Eliminar Colaboración</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">×</span>
         </button>
       </div>
 
-      <form action="/admin/institutions/" method="POST" id="deleteForm" enctype="multipart/form-data"
+      <form action="/admin/collabs/" method="POST" id="deleteForm" enctype="multipart/form-data"
         class="form-horizontal">
         @csrf
         @method('DELETE')
@@ -281,35 +293,26 @@
     }
   });
 
-  /* {
-      details: {
-          display: $.fn.dataTable.Responsive.display.childRowImmediate,
-          type: 'none',
-          target: ''
-      } */
-
 
   $(document).ready(function () {
+
     var table = $('#datatable').DataTable();
+    console.log(table)
+
+    console.log("sale de tabla");
 
     // Start Edit record
     $('#datatable').on('click', '.edit', function () {
-
-      $id_institution = $(this).val();
-      console.log($id_institution);
-
-      $('#editForm').attr('action', '/admin/institutions/' + $id_institution);
-
-
+      $id_collab = $(this).val();
+      $('#editForm').attr('action', '/admin/collabs/' + $id_collab);
     });
 
     // Start Delete Record
     $('#datatable').on('click', '.delete', function () {
 
-      $id_institution = $(this).val();
-      console.log($id_institution);
+      $id_collab = $(this).val();
 
-      $('#deleteForm').attr('action', '/admin/institutions/' + $id_institution);
+      $('#deleteForm').attr('action', '/admin/collabs/' + $id_collab);
 
       });
   });
