@@ -30,7 +30,7 @@
           <a href="{{ url('admin/users') }}">
             <i class="fas fa-users"></i>Usuarios</a>
         </li>
-        <li class="{{ Request::is('workshops') ? 'active' : '' }}">
+        <li class="{{ Request::is('admin/workshops') ? 'active' : '' }}">
           <a href="{{ url('admin/workshops') }}">
             <i class="fas fa-bullhorn"></i>Talleres</a>
         </li>
@@ -38,8 +38,8 @@
           <a href="#">
             <i class="far fa-calendar-o"></i>Calendario</a>
         </li>
-        <li>
-          <a href="#">
+        <li class="{{ Request::is('admin/events') ? 'active' : '' }}">
+          <a href="{{ url('admin/events') }}">
             <i class="fas  fa-clock-o"></i>Línea de tiempo</a>
         </li>
       </ul>

@@ -31,6 +31,7 @@ Route::group(['prefix' => 'admin'], function() {
   Route::resource('/collabs', 'CollabController');
   Route::resource('/users', 'UserController')->middleware('auth');
   Route::resource('/workshops', 'WorkshopController')->middleware('auth');
+  Route::resource('/events', 'EventController')->middleware('auth');
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
