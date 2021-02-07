@@ -7,7 +7,7 @@
       <div>
         <img src="{{ url('theme/images/icon/collabs-icon.png') }}" alt="">
       </div>
-      <h2 class="add-item admin-title pl-3">Colaboraciones con {{ $institution->name }}</h2>
+      <h2 class="add-item admin-title pl-3">Colaboraciones con Casas Hogar</h2>
       <div class="ml-auto">
         <button class="au-btn au-btn-icon au-btn--blue au-btn--small add-item-btn" data-toggle="modal" data-target="#addModal">
           <i class="zmdi zmdi-plus"></i>Agregar Colaboración
@@ -18,15 +18,17 @@
       <table id="datatable" class="table table-data2">
         <thead>
           <tr>
-            <th>Título</th>
+            <th>institución</th>
+            <th>título</th>
             <th>categoría</th>
             <th>fecha</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-          @foreach ($institution->collabs as $collab)
+          @foreach ($collabs as $collab)
           <tr class="tr-shadow">
+            <td class="desc">{{ $collab->institution->name }}</td>
             <td>
               {{ $collab->title }}
             </td>
@@ -70,9 +72,7 @@
           <span aria-hidden="true">×</span>
         </button>
       </div>
-      {{-- <form action="{{ action('CollabController@store') }}" method="POST" id="addForm"
-        enctype="multipart/form-data" class="form-horizontal"> --}}
-        <form  action="{{ action('CollabController@store') }}" method="POST" id="addForm"
+      <form action="{{ action('CollabController@store') }}" method="POST" id="addForm"
         enctype="multipart/form-data" class="form-horizontal">
         @csrf
         <div class="modal-body">
@@ -82,7 +82,11 @@
               <label for="category" class=" form-control-label">Institución</label>
             </div>
             <div class="col-12 col-md-9">
-              <input type="hidden" name="institution_id" value={{ $institution->id }}>
+              <select name="institution_id">
+                @foreach ($institutions as $institution)
+                    <option value="{{ $institution->id }}">{{ $institution->name }}</option>
+                @endforeach
+              </select>
               <small class="form-text text-muted">Nombre de la institución</small>
             </div>
           </div>
@@ -152,11 +156,11 @@
               <label for="category" class=" form-control-label">Institución</label>
             </div>
             <div class="col-12 col-md-9">
-              {{-- <select name="institution_id">
+              <select name="institution_id">
                 @foreach ($institutions as $institution)
                     <option value="{{ $institution->id }}">{{ $institution->name }}</option>
                 @endforeach
-              </select> --}}
+              </select>
               <small class="form-text text-muted">Nombre de la institución</small>
             </div>
           </div>

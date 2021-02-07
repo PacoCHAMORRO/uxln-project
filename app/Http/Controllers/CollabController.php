@@ -19,12 +19,13 @@ class CollabController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Institution $institution)
     {
-        $institutions = Institution::all();
-        $collabs = Collab::all();
+        dd($institution);
+       
+        $collabs = $institution->collabs();
 
-        return view('admin.admin-collabs', compact('institutions', 'collabs'));
+        return view('admin.admin-collabs', compact('institution', 'collabs'));
     }
 
     /**

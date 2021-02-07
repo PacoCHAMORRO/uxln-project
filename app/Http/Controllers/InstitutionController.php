@@ -67,7 +67,7 @@ class InstitutionController extends Controller
      */
     public function show(Institution $institution)
     {
-        return view('template', compact('institution'));
+        return view('admin.admin-collabs', compact('institution'));
     }
 
     /**

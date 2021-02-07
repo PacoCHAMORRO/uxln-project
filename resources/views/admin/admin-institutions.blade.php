@@ -28,7 +28,7 @@
           <tr class="tr-shadow">
             <td>
               <div class="image image-table">
-                <a href="#">
+                <a href="{{ route('institutions.show', $institution->id) }}">
                   <img src="{{ asset('img') . '/' . $institution->logo }}" alt="LOGO">
                 </a>
               </div>
