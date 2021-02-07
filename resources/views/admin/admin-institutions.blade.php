@@ -19,6 +19,8 @@
           <tr>
             <th>logo</th>
             <th>nombre</th>
+            <th>link</th>
+            <th>description</th>
             <th>colaboraciones</th>
             <th></th>
           </tr>
@@ -34,6 +36,8 @@
               </div>
             </td>
             <td>{{ $institution->name }}</td>
+            <td>{{ $institution->link }}</td>
+            <td>{{ $institution->description }}</td>
           
             @if (($institution->collabs()->exists()))
                 <td class="text-success">Tiene colaboraciones</td>
@@ -178,7 +182,7 @@
               <label for="file-input" class=" form-control-label">Logotipo</label>
             </div>
             <div class="col-12 col-md-9">
-              <input type="file" name="logo" class="form-control-file">
+              <input type="file" id="logo" name="logo" class="form-control-file">
             </div>
           </div>
           {{-- END EDIT FORM --}}
@@ -280,22 +284,38 @@
     }
   });
 
-  /* {
-      details: {
-          display: $.fn.dataTable.Responsive.display.childRowImmediate,
-          type: 'none',
-          target: ''
-      } */
-
-
   $(document).ready(function () {
-    var table = $('#datatable').DataTable();
+    var table = $('#datatable').DataTable( {
+      "columnDefs" : [
+        {
+          "targets": 2,
+          "visible": false,
+          "searchable": false
+        },
+        {
+          "targets": 3,
+          "visible": false,
+          "searchable": false
+        }
+      ]
+    } );
 
     // Start Edit record
     $('#datatable').on('click', '.edit', function () {
 
       $id_institution = $(this).val();
-      console.log($id_institution);
+      
+      $tr = $(this).closest('tr');
+      if ($($tr).hasClass('child')) {
+        $tr = $tr.prev('.parent');
+      }
+
+      var data = table.row($tr).data();
+      console.log(data);
+      $('#name').val(data[1]);
+      $('#link').val(data[2]);
+      $('#description').val(data[3]);
+      
 
       $('#editForm').attr('action', '/admin/institutions/' + $id_institution);
 
