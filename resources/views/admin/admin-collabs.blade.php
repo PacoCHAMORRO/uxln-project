@@ -128,8 +128,6 @@
 </div>
 {{-- END ADD MODAL --}}
 
-
-
 {{-- START EDIT MODAL --}}
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
@@ -149,23 +147,10 @@
           {{-- EDIT FORM --}}
           <div class="row form-group">
             <div class="col col-md-3">
-              <label for="category" class=" form-control-label">Institución</label>
-            </div>
-            <div class="col-12 col-md-9">
-              {{-- <select name="institution_id">
-                @foreach ($institutions as $institution)
-                    <option value="{{ $institution->id }}">{{ $institution->name }}</option>
-                @endforeach
-              </select> --}}
-              <small class="form-text text-muted">Nombre de la institución</small>
-            </div>
-          </div>
-          <div class="row form-group">
-            <div class="col col-md-3">
               <label for="title" class=" form-control-label">Categoría</label>
             </div>
             <div class="col-12 col-md-9">
-              <select name="category">
+              <select name="category" id="category">
                 <option value="Salud">Salud</option>
                 <option value="Educación">Educación</option>
                 <option value="Desarrollo Social">Desarrollo Social</option>
@@ -178,7 +163,7 @@
               <label for="title" class=" form-control-label">Título</label>
             </div>
             <div class="col-12 col-md-9">
-              <input type="text" name="title" placeholder="Título" class="form-control">
+              <input type="text" id="title" name="title" placeholder="Título" class="form-control">
               <small class="help-block form-text">Título del evento/colaboración</small>
             </div>
           </div>
@@ -187,7 +172,7 @@
               <label for="date" class=" form-control-label">Fecha</label>
             </div>
             <div class="col-12 col-md-9">
-              <input class="form-control" type="date" name="date">
+              <input class="form-control" id="date" type="date" name="date">
             </div>
           </div>
           {{-- END EDIT FORM --}}
@@ -201,8 +186,6 @@
   </div>
 </div>
 {{-- END EDIT MODAL --}}
-
-
 
 {{-- START DELETE MODAL --}}
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
@@ -293,14 +276,25 @@
   $(document).ready(function () {
 
     var table = $('#datatable').DataTable();
-    console.log(table)
-
-    console.log("sale de tabla");
-
+    
     // Start Edit record
     $('#datatable').on('click', '.edit', function () {
       $id_collab = $(this).val();
-      $('#editForm').attr('action', '/admin/collabs/' + $id_collab);
+
+    $tr = $(this).closest('tr');
+    if ($($tr).hasClass('child')) {
+      $tr = $tr.prev('.parent');
+    }
+
+    var data = table.row($tr).data();
+    console.log("Aqui va");
+    console.log(data);
+
+    $('#title').val(data[0]);
+    $('#category').val(data[1]);
+    $('#date').val(data[2]);
+
+    $('#editForm').attr('action', '/admin/collabs/' + $id_collab);
     });
 
     // Start Delete Record

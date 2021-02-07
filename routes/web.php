@@ -24,11 +24,10 @@ Route::get('/template/{institution}', 'HomeController@template');
 Route::get('/contact', 'HomeController@contact');
 Route::get('/donation', 'HomeController@donation');
 
-
+  
 Route::group(['prefix' => 'admin'], function() {
   Route::get('/', 'AdminController@index')->middleware('auth');
   Route::resource('/institutions', 'InstitutionController');
-
   Route::resource('/collabs', 'CollabController');
   Route::resource('/users', 'UserController')->middleware('auth');
   Route::resource('/workshops', 'WorkshopController')->middleware('auth');
