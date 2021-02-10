@@ -46,7 +46,7 @@
     <!-- Main CSS-->
     <link href="{{ asset('theme/css/theme.css') }}" rel="stylesheet" media="all">
     <link href="{{ asset('theme/css/custom-styles.css') }}" rel="stylesheet" media="all">
-
+    
 </head>
 
 <body class="animsition">
@@ -97,9 +97,11 @@
     </script>
 
     <!-- DataTable JS-->
+    
     <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
-s
+    
+    
     <!-- Main JS-->
     <script src="{{ asset('theme/js/main.js') }}"></script>
 

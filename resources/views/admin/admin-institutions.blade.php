@@ -19,8 +19,8 @@
           <tr>
             <th>logo</th>
             <th>nombre</th>
-            <th>link</th>
-            <th>description</th>
+            <th style="display: none;">link</th>
+            <th style="display: none;">description</th>
             <th>colaboraciones</th>
             <th></th>
           </tr>
@@ -36,8 +36,8 @@
               </div>
             </td>
             <td>{{ $institution->name }}</td>
-            <td>{{ $institution->link }}</td>
-            <td>{{ $institution->description }}</td>
+            <td style="display: none;">{{ $institution->link }}</td>
+            <td style="display: none;">{{ $institution->description }}</td>
           
             @if (($institution->collabs()->exists()))
                 <td class="text-success">Tiene colaboraciones</td>
@@ -233,57 +233,9 @@
 @endsection
 
 @section('script')
+<script src="{{ asset('theme/js/custom.js') }}"></script>
 <script type="text/javascript">
-
-  $.extend(true, $.fn.dataTable.defaults, {
-    "language": {
-      "decimal": ",",
-      "thousands": ".",
-      "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-      "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-      "infoPostFix": "",
-      "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-      "loadingRecords": "Cargando...",
-      "lengthMenu": "Mostrar _MENU_ registros",
-      "paginate": {
-        "first": "Primero",
-        "last": "Último",
-        "next": "Siguiente",
-        "previous": "Anterior"
-      },
-      "processing": "Procesando...",
-      "search": "Buscar:",
-      "searchPlaceholder": "Término de búsqueda",
-      "zeroRecords": "No se encontraron resultados",
-      "emptyTable": "Ningún dato disponible en esta tabla",
-      "aria": {
-        "sortAscending": ": Activar para ordenar la columna de manera ascendente",
-        "sortDescending": ": Activar para ordenar la columna de manera descendente"
-      },
-      //only works for built-in buttons, not for custom buttons
-      "buttons": {
-        "create": "Nuevo",
-        "edit": "Cambiar",
-        "remove": "Borrar",
-        "copy": "Copiar",
-        "csv": "fichero CSV",
-        "excel": "tabla Excel",
-        "pdf": "documento PDF",
-        "print": "Imprimir",
-        "colvis": "Visibilidad columnas",
-        "collection": "Colección",
-        "upload": "Seleccione fichero...."
-      },
-      "select": {
-        "rows": {
-          _: '%d filas seleccionadas',
-          0: 'clic fila para seleccionar',
-          1: 'una fila seleccionada'
-        }
-      }
-    }
-  });
-
+  // Hide columns 2 and 3
   $(document).ready(function () {
     var table = $('#datatable').DataTable( {
       "columnDefs" : [
@@ -315,14 +267,12 @@
       $('#name').val(data[1]);
       $('#link').val(data[2]);
       $('#description').val(data[3]);
-      
 
       $('#editForm').attr('action', '/admin/institutions/' + $id_institution);
 
-
     });
 
-    // Start Delete Record
+    // Delete Record
     $('#datatable').on('click', '.delete', function () {
 
       $id_institution = $(this).val();
