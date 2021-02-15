@@ -4,7 +4,7 @@
             
         <div class="dropdown d-flex">
           <a id="navbarDropdown" class="ml-auto mr-5 dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-              {{ Auth::user()->name }} <span class="caret"></span>
+              Hola, {{ Auth::user()->name }} <span class="caret"></span>
           </a>
 
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
