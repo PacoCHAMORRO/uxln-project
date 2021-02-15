@@ -38,13 +38,12 @@
             <td>{{ $institution->name }}</td>
             <td style="display: none;">{{ $institution->link }}</td>
             <td style="display: none;">{{ $institution->description }}</td>
-          
-            @if (($institution->collabs()->exists()))
-                <td class="text-success">Tiene colaboraciones</td>
-            @else
-                <td class="text-danger">No tiene colaboraciones</td>
-            @endif
-            
+            <td>
+              <div>Total de colaboraciones: {{ $institution->collabs->count() }}</div>
+                <button class="au-btn au-btn--icon au-btn--green au-btn--small">
+                  <a href="{{ route('institutions.show', $institution->id) }}">Editr o agregar</a>
+                </button>
+            </td>            
             <td>
               <div class="table-data-feature">
                 <button class="item edit" data-placement="top" title="Editar" value="{{ $institution->id }}"
@@ -130,8 +129,6 @@
 </div>
 {{-- END ADD MODAL --}}
 
-
-
 {{-- START EDIT MODAL --}}
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
@@ -216,13 +213,14 @@
         @method('DELETE')
         <div class="modal-body">
           {{-- DELETE FORM --}}
-          <p>Seguro que sedea eliminar esto?</p>
+          <p>Todas las colaboraciones relacionadas a esta institución serán borradas.</p>
+          <p>¿Está seguro de que desea eliminar esta institución?</p>
 
           {{-- END EDIT FORM --}}
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <button type="submit" class="btn btn-primary">Sí</button>
+          <button type="submit" class="btn btn-primary">Eliminar</button>
         </div>
       </form>
     </div>

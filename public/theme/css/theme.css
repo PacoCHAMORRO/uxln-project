@@ -489,11 +489,16 @@ section {
 }
 
 .au-btn--green {
-    background: #63c76a;
+    background: #75cfb8;
+    color: white;
 }
 
 .au-btn--green:hover {
-    background: #59bd60;
+    background: #bbdfc8;
+}
+
+.au-btn--green a {
+    color: #fff;
 }
 
 .au-btn-plus {
@@ -562,8 +567,8 @@ section {
 }
 
 .au-btn--small {
-    padding: 0 20px;
-    line-height: 40px;
+    padding: 0 10px;
+    line-height: 30px;
     font-size: 14px;
 }
 
