@@ -1,8 +1,4 @@
-# Proyecto Final
-
-_"El objetivo es que experimenten desarrollar un sistema pensando como un *full stack developer*, es decir que diseñen tanto el *backend* (base de datos, relaciones, validaciones), así como el *frontend* (vistas, html, js, css) y con ello lograr un sistema que brinde una buena experiencia de uso al usuario final."_
-
----
+# UXLN Proyecto Web
 
 ## Integrantes 🤖
 
