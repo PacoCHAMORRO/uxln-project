@@ -5,6 +5,7 @@ use App\Institution;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Gate;
 /* use App\Http\Controllers\Controller; */
 
 class InstitutionController extends Controller
@@ -115,14 +116,24 @@ class InstitutionController extends Controller
      */
     public function destroy(Institution $institution)
     {
-        Storage::delete($institution->logo);
-        $institution->delete();
+        if (gate::allows('is-admin')) {
+            Storage::delete($institution->logo);
+            $institution->delete();
         
-        return back()->with([
-            'alert-type' => 'alert-danger',
-            'badge-type' => 'badge-danger',
-            'message-title' => 'Eliminado',
-            'message' => 'Se ha eliminado la institución de la base de datos.',
-        ]);
+            return back()->with([
+                'alert-type' => 'alert-danger',
+                'badge-type' => 'badge-danger',
+                'message-title' => 'Eliminado',
+                'message' => 'Se ha eliminado la institución de la base de datos.',
+            ]);
+        } else {
+            return back()->with([
+                'alert-type' => 'alert-danger',
+                'badge-type' => 'badge-danger',
+                'message-title' => 'Error',
+                'message' => 'Necesita permisos de administrador para eliminar una institución.',
+            ]);
+        }
+        
     }
 }

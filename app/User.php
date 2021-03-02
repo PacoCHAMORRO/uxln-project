@@ -13,11 +13,11 @@ class User extends Authenticatable
 {
     use Notifiable, SoftDeletes;
 
-    const VERIFIED_USER = '1';
-    const UNVERIFIED_USER = '0';
+    const VERIFIED_USER = 1;
+    const UNVERIFIED_USER = 0;
 
-    const ADMIN_USER = 'true';
-    const REGULAR_USER = 'false';
+    const ADMIN_USER = true;
+    const REGULAR_USER = false;
 
     /**
      * The attributes that are mass assignable.
@@ -31,6 +31,7 @@ class User extends Authenticatable
         'verified',
         'verification_token',
         'admin', 
+        'approved_at',
     ];
 
     /**

@@ -8,9 +8,11 @@
             </div>
             <h2 class="add-item admin-title pl-3">Usuarios</h2>
             <div class="ml-auto">
-              <button class="au-btn au-btn-icon au-btn--blue au-btn--small add-item-btn" data-toggle="modal" data-target="#addModal">
-                <i class="zmdi zmdi-plus"></i>Agregar Usuario
-              </button>
+              
+                <a href="/admin/users-approval" class="au-btn au-btn-icon au-btn--blue au-btn--small add-item-btn">
+                    <i class="zmdi zmdi-plus"></i>Aprobar Usuario
+                </a>
+              
             </div>
           </div>
         <div class="table-responsive table-responsive-data2">
@@ -31,7 +33,7 @@
                         </td>
                         <td>{{ $user->email }}</td>
                         
-                        @if ($user->admin)
+                        @if ($user->admin == 'true')
                             <td class="text-success">Administrador</td>
                        
                         @else
@@ -132,7 +134,7 @@
                             <div class="form-check">
                                 <div class="checkbox">
                                     <label for="admin" class="form-check-label">
-                                        <input type="checkbox" name=admin class="form-check-input" value="on" checked>
+                                        <input type="checkbox" name=admin class="form-check-input" checked>
                                         Admin
                                     </label>
                                 </div>

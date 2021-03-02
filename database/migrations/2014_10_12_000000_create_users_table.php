@@ -13,7 +13,7 @@ class CreateUsersTable extends Migration
      *
      * @return void
      */
-    public function up()
+    public function up() 
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
@@ -24,7 +24,8 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->string('verified')->default(User::UNVERIFIED_USER);
             $table->string('verification_token')->nullable();
-            $table->string('admin')->default(User::REGULAR_USER);
+            $table->boolean('admin')->default(false);
+            $table->timestamp('approved_at')->nullable();
             $table->timestamps();
             $table->softDeletes(); // delete_at
         });

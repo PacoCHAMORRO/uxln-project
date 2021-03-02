@@ -15,7 +15,7 @@ class UserController extends ApiController
      */
     public function index(User $user)
     {
-        $users = User::all();
+        $users = User::all()->where('approved_at', !null);;
 
         /* return $this->showAll($users); */ // API RESPONSE
 
@@ -132,5 +132,31 @@ class UserController extends ApiController
             'message-title' => 'Eliminado',
             'message' => 'Usuario eliminado con éxito',
         ]);
+    }
+
+    /**
+     * Aproves an unser setting the approved_at timestamp
+     * 
+     * @param User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function approveUserView(User $user)
+    {
+        $users_pending = User::all()->where('approved_at', null);
+        return view('admin.admin-user-approval', compact("users_pending"));
+    }
+
+    public function approveUser(User $user)
+    {
+        $user->update(['approved_at' => now()]);
+        $users_pending = User::all()->where('approved_at', null);
+        return view('admin.admin-user-approval', compact("users_pending"));
+    }
+
+    public function declineUser(User $user)
+    {
+        $user->delete();
+        $users_pending = User::all()->where('approved_at', null);
+        return view('admin.admin-user-approval', compact("users_pending"));
     }
 }

@@ -26,12 +26,20 @@ Route::get('/donation', 'HomeController@donation');
 
   
 Route::group(['prefix' => 'admin'], function() {
-  Route::get('/', 'AdminController@index')->middleware('auth');
-  Route::resource('/institutions', 'InstitutionController');
-  Route::resource('/collabs', 'CollabController');
-  Route::resource('/users', 'UserController')->middleware('auth');
-  Route::resource('/workshops', 'WorkshopController')->middleware('auth');
-  Route::resource('/events', 'EventController')->middleware('auth');
+  Route::get('/approval', 'AdminController@approval')->middleware('auth');
+  Route::middleware(['approved'])->group(function () {
+    Route::get('/', 'AdminController@index')->name('admin')->middleware('auth');
+    Route::resource('/institutions', 'InstitutionController');
+    Route::resource('/collabs', 'CollabController');
+    Route::resource('/users', 'UserController')->middleware('auth');
+    Route::resource('/workshops', 'WorkshopController')->middleware('auth');
+    Route::resource('/events', 'EventController')->middleware('auth');
+    Route::get('/users-approval', 'UserController@approveUserView');
+    Route::post('/users-approval/{user}', 'UserController@approveUser');
+    Route::delete('/users-approval/{user}', 'UserController@declineUser');
+  }); 
+  /* Route::get('/', 'AdminController@index')->middleware('auth'); */
+  
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

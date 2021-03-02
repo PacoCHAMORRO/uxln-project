@@ -484,8 +484,12 @@ section {
     margin-right: 5px;
 }
 
-.au-btn--blue {
-    background: #6FA2C;
+.au-btn--red {
+    background: #DD3E4D;
+}
+
+.au-btn--red:hover {
+    background: #e27b85;
 }
 
 .au-btn--green {
