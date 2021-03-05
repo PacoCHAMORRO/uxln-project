@@ -261,7 +261,6 @@
       }
 
       var data = table.row($tr).data();
-      console.log(data);
       $('#name').val(data[1]);
       $('#link').val(data[2]);
       $('#description').val(data[3]);

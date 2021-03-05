@@ -15,10 +15,8 @@ class UserController extends ApiController
      */
     public function index(User $user)
     {
-        $users = User::all()->where('approved_at', !null);;
-
-        /* return $this->showAll($users); */ // API RESPONSE
-
+        $this->authorize('viewAny', User::class);
+        $users = User::all()->where('approved_at', !null);
         return view('admin.admin-users', compact('users'));
     }
 
@@ -37,7 +35,6 @@ class UserController extends ApiController
         ];
 
         $this->validate($request, $rules);
-        /* $request->validate($rules); */
 
         $data = $request->all();
         $data['password'] = bcrypt($request->password);
@@ -46,8 +43,6 @@ class UserController extends ApiController
         $data['admin'] = $request->admin;
 
         $user = User::create($data);
-
-        /* return $this->showOne($user, 201); */ // API Response
 
         return back()->with([
             'alert-type' => 'alert-success',
@@ -75,32 +70,15 @@ class UserController extends ApiController
      * @param  User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $user)
+    public function update(Request $request, User $user)
     {
-        $rules = [
-            'email' => 'email|unique:users,email,' .$user->id,
-            'passwords' => 'min:7|confirmed',
-            'admin' => 'in:' . User::ADMIN_USER . ',' . User::REGULAR_USER,
-        ];
-
-        if ($request->has('name')) {
+         $this->authorize('update', $user);
+        
+        if ($request->filled('name')) {
             $user->name = $request->name;
         }
 
-        if ($request->has('email') && $user->email != $request->email) {
-            $user->verified = User::UNVERIFIED_USER;
-            $user->verification_token = User::generateVerificationCode();
-            $user->email = $request->email;
-        }
-
-        if ($request->has('password')) {
-            $user->password = bcrypt($request->password);
-        }
-
-        if ($request->has('admin')) {
-            if (!$user->isVerified()) {
-                return $this->errorResponse('Only verified users can modify admin field', 409);
-            }
+        if ($request->filled('admin')) {
             $user->admin = $request->admin;
         }
 
@@ -110,8 +88,12 @@ class UserController extends ApiController
 
         $user->save();
 
-        /* return $this->showOne($user); */ // API Response
-        return back();
+        return back()->with([
+            'alert-type' => 'alert-success',
+            'badge-type' => 'badge-success',
+            'message-title' => 'Actualizado',
+            'message' => 'El usuario ha sido actualizado exitosamente,',
+        ]);
     }
 
     /**
@@ -122,9 +104,8 @@ class UserController extends ApiController
      */
     public function destroy(User $user)
     {
+        $this->authorize('delete', $user);
         $user->delete();
-
-        /* return $this->showOne($user); */ // API Response
 
         return back()->with([
             'alert-type' => 'alert-danger',
