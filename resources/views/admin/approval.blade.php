@@ -5,12 +5,12 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Waiting for Approval</div>
+                    <div class="card-header">Esperando Aprobación</div>
 
                     <div class="card-body">
-                        Your account is waiting for our administrator approval.
+                        Tu cuenta está esperando por la aprobación del administrador.
                         <br />
-                        Please check back later.
+                        Por favor, revisa más tarde.
                     </div>
                 </div>
             </div>
